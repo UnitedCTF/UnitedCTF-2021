@@ -17,7 +17,7 @@ Voici un filesystem complet d'une machine Windows. Dans C:\Users\Administrator\D
 
 Indice: Il existe plusieurs façons de résoudre ce défi, mais la façon prévue peut être découverte en lisant la partie à droite dans [la page wikipedia de FAT](https://en.wikipedia.org/wiki/File_Allocation_Table).
 
-Incide 2: Pour résoudre le défi de la façon prévue, il faut monter (mount) le filesystem avec une version pro ou éducation de Windows avec Hyper-V d'installé. Pour installer Hyper-V, voir [ici](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v). Un tout petit peu de scripting devrait également être nécessaire, plusieurs langages font le travail, mais la solution a été testée avec Python 3.
+Indice 2: Pour résoudre le défi de la façon prévue, il faut monter (mount) le filesystem avec une version pro ou éducation de Windows avec Hyper-V d'installé. Pour installer Hyper-V, voir [ici](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v). Un tout petit peu de scripting devrait également être nécessaire, plusieurs langages font le travail, mais la solution a été testée avec Python 3.
 
 [Lien vers le filesystem](https://drive.google.com/file/d/1D7lTMCrkNKqgaFqJJeShtERK0fGXTd_t/view?usp=sharing) (Utiliser 7Zip pour décompresser).
 
