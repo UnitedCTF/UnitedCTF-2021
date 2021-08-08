@@ -15,9 +15,10 @@ La pratique du *Computer Forensics* est utilisée dans deux cas principaux: lors
 
 Voici un filesystem complet d'une machine Windows. Dans C:\Users\Administrator\Desktop\flags, tu trouveras beaucoup de fichiers. Un de ces fichiers n'est pas légitime et a été planté par un acteur malicieux qui avait un accès physique à la machine. Le fichier copié provient d'une clé USB formattée en FAT32. Trouve ce fichier, il contient de bon flag.
 
+*Note: Pour résoudre le défi de la façon prévue, il faut monter (mount) le filesystem avec une version pro ou éducation de Windows avec Hyper-V d'installé. Pour installer Hyper-V, voir [ici](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v). Un tout petit peu de scripting devrait également être nécessaire, plusieurs langages font le travail, mais la solution a été testée avec Python 3.*
+
 Indice: Il existe plusieurs façons de résoudre ce défi, mais la façon prévue peut être découverte en lisant la partie à droite dans [la page wikipedia de FAT](https://en.wikipedia.org/wiki/File_Allocation_Table).
 
-Indice 2: Pour résoudre le défi de la façon prévue, il faut monter (mount) le filesystem avec une version pro ou éducation de Windows avec Hyper-V d'installé. Pour installer Hyper-V, voir [ici](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v). Un tout petit peu de scripting devrait également être nécessaire, plusieurs langages font le travail, mais la solution a été testée avec Python 3.
 
 [Lien vers le filesystem](https://drive.google.com/file/d/1D7lTMCrkNKqgaFqJJeShtERK0fGXTd_t/view?usp=sharing) (Utiliser 7Zip pour décompresser).
 
