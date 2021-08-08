@@ -53,8 +53,6 @@ class Interpreter:
         return True
 
     def visualize(self):
-        print(chr(27) + "[2J")
-
         grid = self.__world.raw()
 
         for player in self.__players:

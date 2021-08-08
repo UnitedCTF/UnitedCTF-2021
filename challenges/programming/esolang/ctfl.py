@@ -20,4 +20,4 @@ if __name__ == '__main__':
             interpreter.visualize()
             time.sleep(args.delay)
 
-    print(interpreter.output)
+    print(interpreter.output.decode('utf8'))
