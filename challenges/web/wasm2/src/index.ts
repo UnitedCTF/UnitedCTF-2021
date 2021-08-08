@@ -2,26 +2,47 @@ import express from 'express';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
 
-const app = express();
+const PORT = process.env.PORT || 1337;
 const FLAG = fs.readFileSync('./challenge/FLAG').toString();
-
-app.use(fileUpload());
-
-app.set('view engine', 'ejs');
-
-app.get('/', (req, res) => {
-    res.render('index', {});
-});
 
 function random_string(len: number) {
     return [...Array(len)].map(() => Math.random().toString(36)[2]).join('');
 }
 
+function send_success(res: any, msg: string) {
+    res.render('index', { 'title': 'You Got It!', 'text': msg, 'gif': 'success.gif' });
+}
+
+function send_fail(res: any, msg: string) {
+    res.render('index', { 'title': 'Something Went Wrong...', 'text': msg, 'gif': 'fail.gif' });
+}
+
+const app = express();
+
+app.use(fileUpload());
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+    res.render('index', { 'title': 'Give It To Me', 'text': 'Upload your WASM file.', 'gif': 'upload.gif' });
+});
+
+app.get('/healthcheck', (req, res) => {
+    res.send('OK');
+});
+
+app.get('/src', (req, res) => {
+    res.writeHead(200, {'Content-Type': 'text'});
+    res.write(fs.readFileSync(`${__dirname}/index.ts`).toString('utf8'));
+    res.end();
+});
+
 app.post('/', async (req, res) => {
     const data = (req?.files?.file as any)?.data;
 
     if (data == null) {
-        res.send("No file.");
+        send_fail(res, "No file.");
     }
 
     let solved = false;
@@ -78,15 +99,15 @@ app.post('/', async (req, res) => {
         await (instance.exports as any)?.main();
 
         if(solved) {
-            res.send(FLAG);
+            send_success(res, FLAG);
         } else {
-            res.send("Wrong answer.");
+            send_fail(res, "Wrong answer.");
         }
     } catch {
-        res.send("WASM error.");
+        send_fail(res, "WASM error.");
     }
 });
 
-app.listen(1337, () => {
-    console.log(`WASM2 listening at http://localhost:${1337}`)
+app.listen(PORT, () => {
+    console.log(`WASM2 listening at http://localhost:${PORT}`)
 });

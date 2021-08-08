@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  web:
+    container_name: wasm-2-dev
+    ports:
+      - "1337:1337"
+    environment:
+      PORT: 1337
+      ENVIRONMENT: "development"
+    build:
+      context: .
+      dockerfile: Dockerfiledev
+    restart: always
+    healthcheck:
+      test: curl -f http://localhost:1337/healthcheck || false
+      interval: 30s
+      timeout: 3s
+    volumes:
+      - ./src:/app/src
+      - ./views:/app/views
+      - ./public:/app/public
