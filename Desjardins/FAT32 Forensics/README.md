@@ -3,13 +3,13 @@
 
 ## Challenge description
 
-### Qu'est-ce que le computer forensics?
+### Qu'est-ce que le digital forensics?
 
-Le *Computer Forensics*, c'est l'ensemble des techniques qui visent à récupérer et à analyser les divers "artifacts" laissés par divers systèmes informatiques dans leurs opérations dans le but de comprendre ce qui s'est passé après coup sur lesdits systèmes informatiques. Le terme a été adopté du terme plus connu *[Forensics Science](https://en.wikipedia.org/wiki/Forensic_science)*, où, traditionnellement, des scientifiques amassent des éléments laissés par des criminels sur des scènes de crime afin de reconstruire des éléments utiles à l'enquête en cours (par exemple, des empreintes digitales).
+Le *Digital Forensics*, c'est l'ensemble des techniques qui visent à récupérer et à analyser les divers "artifacts" laissés par divers systèmes informatiques dans leurs opérations dans le but de comprendre ce qui s'est passé après coup sur lesdits systèmes informatiques. Le terme a été adopté du terme plus connu *[Forensics Science](https://en.wikipedia.org/wiki/Forensic_science)*, où, traditionnellement, des scientifiques amassent des éléments laissés par des criminels sur des scènes de crime afin de reconstruire des éléments utiles à l'enquête en cours (par exemple, des empreintes digitales).
 
 Les systèmes informatiques qu'on utilise aujourd'hui, tels que les ordinateurs personnels, serveurs et téléphones, sont le fruit de décennies d'innovation et de dizaines de couches d'abstractions. Par exemple, sur le système d'exploitation Windows, il existe plusieurs façons de trouver l'existence d'un fichier, ainsi que sa dernière date de modification, après qu'il ait été supprimé complètement de l'ordinateur!
 
-La pratique du *Computer Forensics* est utilisée dans deux cas principaux: lors d'enquêtes policières et lors de "Réponse aux Incidents", afin de comprendre ce qui a pu causer une brèche de sécurité et/ou afin d'amasser des *Indicators of Compromise (IoCs)*.
+La pratique du *Digital Forensics* est utilisée dans deux cas principaux: lors d'enquêtes policières et lors de "Réponse aux Incidents", afin de comprendre ce qui a pu causer une brèche de sécurité et/ou afin d'amasser des *Indicators of Compromise (IoCs)*.
 
 ### Le défi
 
