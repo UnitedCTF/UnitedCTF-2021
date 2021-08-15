@@ -36,3 +36,19 @@ You may also be interested to write low-level code in `wat`. The code can be wri
 - Compile C from Scratch: https://surma.dev/things/c-to-webassembly/
 
 - WASM Studio: https://webassembly.studio/ 
+
+# Setup
+
+Requirements:
+
+- `docker`
+- `docker-compose`
+
+Start:
+
+```
+Production: docker-compose up
+Development: docker-compose -f docker-compose.dev.yml up
+```
+
+(The challenge will be locally hosted at http://localhost:1337/).
