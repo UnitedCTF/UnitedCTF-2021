@@ -5,6 +5,6 @@
     (func $verify_answer (import "imports" "verify_answer") (param i32))
 
     (func (export "main")
-        ;; Enter WASM Here.
+        
     )
 )
