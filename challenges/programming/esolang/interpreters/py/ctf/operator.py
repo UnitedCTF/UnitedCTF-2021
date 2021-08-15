@@ -138,10 +138,10 @@ class Add(Operator):
     def parse(cls, player: Player, world: World):
         player.backpack.push(player.backpack.pop() + player.backpack.pop())
 
-class Substract(Operator):
+class Subtract(Operator):
     @classmethod
     def can_parse(cls, tile: int) -> bool:
-        return tile == Tile.SUBSTRACT.value
+        return tile == Tile.SUBTRACT.value
 
     @classmethod
     def parse(cls, player: Player, world: World):
@@ -162,13 +162,3 @@ class Input(Operator):
             player.backpack.push(b'0')
         else: 
             player.backpack.push(world.pop_input())
-
-# class Zero(Operator):
-#     @classmethod
-#     def can_parse(cls, tile: int) -> bool:
-#         return tile == Tile.ZERO.value
-    
-#     @classmethod
-#     def parse(cls, player: Player, world: World):
-#         if player.backpack.empty():
-#             player.step()

@@ -15,9 +15,8 @@ class Tile(Enum):
     DROP = ord('_')
     SPACE = ord('?')
     ADD = ord('+')
-    SUBSTRACT = ord('-')
+    SUBTRACT = ord('-')
     INPUT = ord(',')
-    # ZERO = ord('?')
 
 class Direction(Enum):
     LEFT = 0
