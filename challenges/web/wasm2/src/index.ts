@@ -76,26 +76,26 @@ app.post('/', async (req, res) => {
         attempted = true;
     }
 
-    const wasm = await WebAssembly.compile(data);
-    const instance = await WebAssembly.instantiate(wasm, { 
-        imports: { 
-            put_challenge, 
-            verify_answer 
-        }, 
-        env: { 
-            put_challenge, 
-            verify_answer 
-        }, 
-        js: { 
-            memory 
-        } 
-    });
-
-    if(instance.exports.main == undefined) {
-        res.send("No main function.");
-    }
-
     try {
+        const wasm = await WebAssembly.compile(data);
+        const instance = await WebAssembly.instantiate(wasm, { 
+            imports: { 
+                put_challenge, 
+                verify_answer 
+            }, 
+            env: { 
+                put_challenge, 
+                verify_answer 
+            }, 
+            js: { 
+                memory 
+            } 
+        });
+
+        if(instance.exports.main == undefined) {
+            res.send("No main function.");
+        }
+    
         await (instance.exports as any)?.main();
 
         if(solved) {
@@ -103,8 +103,8 @@ app.post('/', async (req, res) => {
         } else {
             send_fail(res, "Wrong answer.");
         }
-    } catch {
-        send_fail(res, "WASM error.");
+    } catch(e) {
+        send_fail(res, `${e}`);
     }
 });
 
