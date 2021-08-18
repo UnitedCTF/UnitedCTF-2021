@@ -25,38 +25,38 @@ jmp 0x0000:main
 %include "font.asm"
 
 main:
-	mov ax, 0x7e00
-	mov bx, 0x0002
-	mov cx, 0x0080
-	call disk_load
+  mov ax, 0x7e00
+  mov bx, 0x0002
+  mov cx, 0x0080
+  call disk_load
 
-	mov bx, 0x411a
-	call font_load
-	mov bh, 0x61
-	call font_load
-	add ax, 0x16c  ; 26*14
-	mov bx, 0x300a
-	call font_load
-	add ax, 0x8c   ; 10*14
-	mov bx, 0x210f
-	call font_load
-	add ax, 0xd2   ; 15*14
-	mov bx, 0x3a07
-	call font_load
-	add ax, 0x62   ; 7*14
-	mov bx, 0x5b06
-	call font_load
-	add ax, 0x54   ; 6*14
-	mov bx, 0x7b04
-	call font_load
+  mov bx, 0x411a
+  call font_load
+  mov bh, 0x61
+  call font_load
+  add ax, 0x16c  ; 26*14
+  mov bx, 0x300a
+  call font_load
+  add ax, 0x8c   ; 10*14
+  mov bx, 0x210f
+  call font_load
+  add ax, 0xd2   ; 15*14
+  mov bx, 0x3a07
+  call font_load
+  add ax, 0x62   ; 7*14
+  mov bx, 0x5b06
+  call font_load
+  add ax, 0x54   ; 6*14
+  mov bx, 0x7b04
+  call font_load
 
-	mov ax, FLAG
-	call print
+  mov ax, FLAG
+  call print
 
 halt:
-	cli
-	hlt
-	jmp halt
+  cli
+  hlt
+  jmp halt
 
 %include "flag.asm"
 
