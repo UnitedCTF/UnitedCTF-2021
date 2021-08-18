@@ -1,0 +1,18 @@
+version: "3.0"
+
+services:
+  app:
+    build:
+      context: "."
+    restart: "unless-stopped"
+    environment: 
+      - NODE_ENV=production
+      - VERSION=0.0.0
+      - PORT=5000
+
+      - CHANCE_FOR_WAVE=0.15
+      - WINS_FOR_FLAG=3
+      - TIMEOUT=60000
+      - FLAG=FLAG{ALL_YOUR_SHIPS_ARE_BELONG_TO_US}
+    ports: 
+      - 5000:5000
