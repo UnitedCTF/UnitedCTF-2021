@@ -6,7 +6,9 @@ export class Random {
   private _s3: number;
 
   constructor() {
-    this._s1 = this._s2 = this._s3 = Date.now();
+    this._s1 = Date.now() % 30000;
+    this._s2 = Date.now() % 30000;
+    this._s3 = Date.now() % 30000;
   }
 
   public next(): number {
