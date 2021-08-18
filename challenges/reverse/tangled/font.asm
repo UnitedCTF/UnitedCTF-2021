@@ -26,9 +26,6 @@ font_load:
   mov ax, 0x1100
   int 10h
 
-  mov ax, 0x4C00
-  int 21h
-
   popa
   ret
 

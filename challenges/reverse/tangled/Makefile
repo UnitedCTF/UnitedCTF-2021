@@ -1,6 +1,16 @@
 default:
 	nasm -f bin boot.asm -o boot.bin
 
+hint:
+	python shuffle_chars.py
+
+	mv chars.asm _chars.asm
+	mv chars_shuffled.asm chars.asm
+
+	nasm -f bin boot.asm -o boot.bin
+
+	mv _chars.asm chars.asm
+
 final:
 	python shuffle_chars.py
 	
@@ -17,7 +27,7 @@ final:
 
 boot:
 	qemu-system-x86_64 \
-		-drive file=boot.bin,format=raw
+		-drive file=boot.bin,format=raw,if=floppy
 
 debug:
 	qemu-system-x86_64 -S -s \

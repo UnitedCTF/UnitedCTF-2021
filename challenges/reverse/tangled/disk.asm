@@ -3,12 +3,10 @@ jmp _disk_section_end
 ; ax: where to
 ; bh: sector start
 ; bl: sector count
-; cl: where from
 disk_load:
   pusha
 
   push bx
-  push cx
   push ax
 
   mov ah, bh
@@ -20,7 +18,7 @@ disk_load:
   mov ch, 0x00
   mov cl, 0x02
 
-  pop dx
+  mov dx, [BOOT_DISK]
   xor dh, dh
 
   int 0x13
@@ -28,7 +26,6 @@ disk_load:
 
   pop bx
   cmp al, bl
-  mov bx, SECTOR_ERROR
   jne sector_error
 
   xor ah, ah
@@ -37,15 +34,17 @@ disk_load:
   popa
   ret
 
+BOOT_DISK: db 0x00
+
 disk_error:
   mov ax, DISK_ERROR
   call print
-  jmp $
+  jmp halt
 
 sector_error:
   mov ax, SECTOR_ERROR
   call print
-  jmp $
+  jmp halt
 
 DISK_ERROR: db "Disk error", 13, 10, 0
 SECTOR_ERROR: db "Sector error", 13, 10, 0
