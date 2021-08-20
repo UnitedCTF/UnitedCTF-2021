@@ -7,12 +7,10 @@ Voici une machine virtuelle Windows. Plusieurs flags ont été manipulés dans c
 
 Tous les outils nécessaires à la récupération des flags sont inclus dans la machine virtuelle, sur le bureau.
 
-L'utilisateur de la machine s'est connecté en RDP vers une machine externe et a consulté un flag. Récupérez ce flag.
+Défi: **L'utilisateur de la machine s'est connecté en RDP vers une machine externe et a consulté un flag. Récupérez ce flag.**
 
 **Nom d'utilisateur: user**
 **Mot de passe: toor**
-
-Puisqu'il s'agit d'une machine Windows d'essai, la machine virtuelle va s'éteindre chaque heure, automatiquement. Rien n'est perdu, c'est simplement désagréable. Avant de commencer les défis, il serait préférable de créer une "snapshot" de la machine virtuelle pour y revenir au besoin.
 
 [Lien vers le OVA](https://drive.google.com/file/d/1bCkf312TXr7DgTvZLq9C-tMEtRDBIPFm/view?usp=sharing).
 
@@ -20,9 +18,11 @@ Note: Même si la track de défis est séparée en partie numérotée, elles son
 
 Note 2: Cette track de défis est inspirée de la playlist [Introduction to Windows Forensics par 13Cubed sur Youtube](https://www.youtube.com/playlist?list=PLlv3b9B16ZadqDQH0lTRO4kqn2P1g9Mve). La playlist comprend plein d'autres éléments de forensics Windows si vous voulez approfondir vos connaissances.
 
-## Partie 2: Shellbag
+Note 3: Puisqu'il s'agit d'une machine Windows d'essai, la machine virtuelle va s'éteindre chaque heure, automatiquement. Rien n'est perdu, c'est simplement désagréable. Avant de commencer les défis, il serait préférable de créer une "snapshot" de la machine virtuelle pour y revenir au besoin.
 
-<à venir>
+## Partie 2: Shellbags
+
+Le même utilisateur a supprimé un répertoire qui contenait un flag. Quel était le nom de ce répertoire?
 
 ## Partie 3: LNK Files
 
@@ -47,7 +47,11 @@ L'outil "bmc-tools" permet de transformer ce cache en images qu'on peut visionne
 
 ### Part 2
 
-<à venir>
+Semblable à la partie 1, en googlant "Windows Forensics Shellbags", on trouve de l'information. On remarque qu'on peut utiliser l'outil "ShellBags Explorer" pour trouver notre flag.
+
+1. Ouvrir "C:\Users\user\Desktop\ShellBagsExplorer\ShellBagsExplorer.exe"
+2. File --> Load Active Registry
+3. Fouiller un peu les entrées. Il y a une entrée appelée "monflag" qui contient un répertoire "deeper" qui contient le flag: `flag-folderContenantFlag2`.
 
 ### Part 3
 
