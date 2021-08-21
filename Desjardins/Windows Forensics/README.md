@@ -14,8 +14,6 @@ Défi: **L'utilisateur de la machine s'est connecté en RDP vers une machine ext
 
 [Lien vers le OVA](https://drive.google.com/file/d/1bCkf312TXr7DgTvZLq9C-tMEtRDBIPFm/view?usp=sharing).
 
-Note: Même si la track de défis est séparée en partie numérotée, elles sont toutes indépendantes et peuvent être complétées dans l'ordre que vous choisissez (il est cependant recommandé, mais pas obligatoire, de compléter la partie 3 après la 2).
-
 Note 2: Cette track de défis est inspirée de la playlist [Introduction to Windows Forensics par 13Cubed sur Youtube](https://www.youtube.com/playlist?list=PLlv3b9B16ZadqDQH0lTRO4kqn2P1g9Mve). La playlist comprend plein d'autres éléments de forensics Windows si vous voulez approfondir vos connaissances.
 
 Note 3: Puisqu'il s'agit d'une machine Windows d'essai, la machine virtuelle va s'éteindre chaque heure, automatiquement. Rien n'est perdu, c'est simplement désagréable. Avant de commencer les défis, il serait préférable de créer une "snapshot" de la machine virtuelle pour y revenir au besoin.
@@ -30,7 +28,12 @@ Dans le répertoire supprimé dans la partie 2, il y avait un fichier. Trouvez l
 
 # Partie 4: NTFS Journal
 
-<à venir>
+Trouvez la date de suppression du fichier trouvé dans l’exercice précédent.
+
+Flag format: `FLAG-YYYY-MM-DD_HH:mm:ss`
+Exemple: `FLAG-2021-20-08_20:37:06`
+
+Note: Les artifacts nécessaires à la résolution du défi ont déjà été extraits dans la machine virtuelle.
 
 ## Solution
 
@@ -67,4 +70,16 @@ Un peu de googling nous apprend que les .LNK se situent dans %appdata\Microsoft\
 
 ### Part 4
 
-<à venir>
+Le système de fichier NTFS garde un journal des opérations faites afin d'assurer l'intégrité des données.
+
+Les trois fichiers utiles, $MFT, $J et $LogFile, peuvent être extraits du système avec FTK Imager. Pour *parse* ces données, on peut utiliser ANJP pour trouver le flag.
+
+Pour ce défi, nous cherchons à lire le USNJournal, qui traque les changements faits aux fichiers et répertoires.
+
+1. (déjà fait) Utiliser FTK Imager pour extraire $MFT, $J et $LogFile.
+2. Lancer ANJP, mettre les trois fichiers dans leur case respective et faire "Parse". C'est un long processus (30mins-1h)
+3. Aller dans reports -> usn -> usn events -> transaction events -> Deletions
+4. Filter -> Column = USN Rcd File Name, Condition = LIKE, Value = %flag% --> Add --> Filter
+4. On regarde l'entrée qui concerne flag-leDeuxiemeFlag.txt (et non pas le .txt.lnk), on voit dans la colonne USN Rcd Time: 2019-11-17 01:18:36
+
+`FLAG-2019-11-17_01:18:36`
