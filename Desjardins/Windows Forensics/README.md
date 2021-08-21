@@ -14,7 +14,7 @@ Défi: **L'utilisateur de la machine s'est connecté en RDP vers une machine ext
 
 [Lien vers le OVA](https://drive.google.com/file/d/1bCkf312TXr7DgTvZLq9C-tMEtRDBIPFm/view?usp=sharing).
 
-Note: Même si la track de défis est séparée en partie numérotée, elles sont toutes indépendantes et peuvent être complétées dans l'ordre que vous choisissez.
+Note: Même si la track de défis est séparée en partie numérotée, elles sont toutes indépendantes et peuvent être complétées dans l'ordre que vous choisissez (il est cependant recommandé, mais pas obligatoire, de compléter la partie 3 après la 2).
 
 Note 2: Cette track de défis est inspirée de la playlist [Introduction to Windows Forensics par 13Cubed sur Youtube](https://www.youtube.com/playlist?list=PLlv3b9B16ZadqDQH0lTRO4kqn2P1g9Mve). La playlist comprend plein d'autres éléments de forensics Windows si vous voulez approfondir vos connaissances.
 
@@ -26,7 +26,7 @@ Le même utilisateur a supprimé un répertoire qui contenait un flag. Quel éta
 
 ## Partie 3: LNK Files
 
-<à venir>
+Dans le répertoire supprimé dans la partie 2, il y avait un fichier. Trouvez le nom de ce fichier.
 
 # Partie 4: NTFS Journal
 
@@ -49,13 +49,21 @@ L'outil "bmc-tools" permet de transformer ce cache en images qu'on peut visionne
 
 Semblable à la partie 1, en googlant "Windows Forensics Shellbags", on trouve de l'information. On remarque qu'on peut utiliser l'outil "ShellBags Explorer" pour trouver notre flag.
 
-1. Ouvrir "C:\Users\user\Desktop\ShellBagsExplorer\ShellBagsExplorer.exe"
+Les Shellbags sont des informations sur les répertoires accédés par un utilisateur avec l'explorateur Windows, qui contient quelques métadonnées intéressantes sur les répertoires. Même après la suppression d'un répertoire, les shellbags persistent.
+
+1. Ouvrir `C:\Users\user\Desktop\ShellBagsExplorer\ShellBagsExplorer.exe`
 2. File --> Load Active Registry
 3. Fouiller un peu les entrées. Il y a une entrée appelée "monflag" qui contient un répertoire "deeper" qui contient le flag: `flag-folderContenantFlag2`.
 
 ### Part 3
 
-<à venir>
+Les LNK files sont créés lorsqu'on ouvre un fichier ou programme dans Windows. Ils contiennent des métadonnées intéressantes comme le nom du fichier, le dernier temps d'exécution, la taille du fichier et d'autres. Même après la suppression d'un fichier, sa référence .LNK persiste.
+
+Un peu de googling nous apprend que les .LNK se situent dans %appdata\Microsoft\Windows\Recent.
+
+1. Ouvrir un cmd.
+2. On lance la commande: `C:\Users\user\Desktop\LECmd\LECmd.exe -d "C:\users\user\appdata\roaming\Microsoft\Windows\Recent" --csv .`
+3. Ouvrir le fichier .csv avec un éditeur texte. On fouille un peu, et on trouve le flag: `flag-leDeuxiemeFlag.txt`
 
 ### Part 4
 
