@@ -11,17 +11,19 @@ if (!isset($_SESSION["folder"])) {
 	mkdir($folder);
 	$_SESSION["folder"] = $folder;
 } else {
-	// Delete files of recurring visitors
-	if (time() - $_SESSION['creation'] > 60 * 60 * 4) {
+	// Make sure the folder does exist
+	if (!is_dir("uploads/" . $_SESSION["folder"])) {
+		mkdir("uploads/" . $_SESSION["folder"]);
+	}
+
+	// Delete files of recurring visitors after a while
+	if (time() - $_SESSION["creation"] > 60 * 60 * 6) {
 		$scanned_folder = array_diff(scandir($_SESSION["folder"]), array('..', '.'));
 		foreach ($scanned_folder as $file) {
 			$file_path = $_SESSION["folder"] . $file;
 			unlink($file_path);
 		}
-		rmdir($_SESSION["folder"]);
-		session_destroy();
-		header("Refresh: 0;");
-		die();
+		$_SESSION["creation"] = time();
 	}
 }
 ?>
