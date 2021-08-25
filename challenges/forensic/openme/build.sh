@@ -57,7 +57,7 @@ mkfs.ext4 -L OPENME "/dev/vg-openme/lv-openme"
 
 # Mount the LV in the second partition and put the flag in it
 mount "/dev/vg-openme/lv-openme" "$TMPD"
-echo "FLAG{DOWN_THE_RABBIT_HOLE}" > "$TMPD/flag.txt"
+echo "FLAG-DOWN_THE_RABBIT_HOLE" > "$TMPD/flag.txt"
 umount "$TMPD"
 
 # Desactivate the VG
@@ -75,5 +75,6 @@ losetup -d "$LOOP"
 # Remove the temporary directory
 rmdir "$TMPD"
 
-# Make the file readable without root
-chown SUDO_USER:SUDO_GID openme
+# Make the file readable without root if invoked with sudo
+[ ! -z "$SUDO_USER" ] && \
+  chown $SUDO_USER:$SUDO_GID openme
