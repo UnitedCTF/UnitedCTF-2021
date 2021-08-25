@@ -3,7 +3,7 @@
 Author: @KptCheeseWhiz
 
 ## Challenge
-Can you run this?
+Can you reverse me?
 
 ## Resources
  - https://linux.die.net/man/1/qemu-kvm
