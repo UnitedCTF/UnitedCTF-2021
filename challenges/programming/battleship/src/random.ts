@@ -1,14 +1,12 @@
-// https://www.youtube.com/watch?v=1hs451PfFzQ
-
 export class Random {
   private _s1: number;
   private _s2: number;
   private _s3: number;
 
   constructor() {
-    this._s1 = Date.now() % 30000;
-    this._s2 = Date.now() % 30000;
-    this._s3 = Date.now() % 30000;
+    this._s1 = Date.now();
+    this._s2 = Date.now();
+    this._s3 = Date.now();
   }
 
   public next(): number {

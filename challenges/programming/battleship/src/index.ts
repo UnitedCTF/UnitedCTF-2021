@@ -23,18 +23,21 @@ const PORT = Number(process.env.PORT || 5000);
 
   server.on("connection", (socket) => {
     const name = `[${socket.remoteAddress}]:${socket.remotePort}`;
-    const board = new Board(10, 10, [2, 3, 3, 4, 5], 25);
+    const board = new Board(8, 8, [2, 3, 4, 5], 24);
 
     console.log(name, "welcome");
     socket.write(TITLE);
     socket.write(
-      `There is a ${CHANCE_FOR_WAVE * 100}% chance for waves today ­~~\n`
+      `There is a ${CHANCE_FOR_WAVE * 100}% chance for waves today ­~~\n\n`
+    );
+    socket.write(
+      "The board is 8x8, you have 24 shots and there are 4 ships of length 2, 3, 4 and 5\n"
     );
 
     socket.write(
       `You have to beat this gam times within ${
         TIMEOUT / 1000
-      } seconds, failing once kicks you out of the game. The timer starts when you send your first command.\n\n`
+      } seconds. The timer starts when you send your first command.\n\n`
     );
 
     socket.write("> ");

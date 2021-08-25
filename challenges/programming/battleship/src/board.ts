@@ -102,19 +102,19 @@ class Board {
         for (let j = 0; j < ship.length; ++j) {
           switch (ship.orientation) {
             case "N":
-              if (this._tiles[x][y - j] != Tile.EMPTY) ok = false;
+              if (this._tiles[x][y - j] !== Tile.EMPTY) ok = false;
               ship_tiles.push([x, y - j]);
               break;
             case "E":
-              if (this._tiles[x + j][y] != Tile.EMPTY) ok = false;
+              if (this._tiles[x + j][y] !== Tile.EMPTY) ok = false;
               ship_tiles.push([x + j, y]);
               break;
             case "S":
-              if (this._tiles[x][y + j] != Tile.EMPTY) ok = false;
+              if (this._tiles[x][y + j] !== Tile.EMPTY) ok = false;
               ship_tiles.push([x, y + j]);
               break;
             case "W":
-              if (this._tiles[x - j][y] != Tile.EMPTY) ok = false;
+              if (this._tiles[x - j][y] !== Tile.EMPTY) ok = false;
               ship_tiles.push([x - j, y]);
               break;
           }
