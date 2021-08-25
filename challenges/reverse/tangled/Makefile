@@ -2,7 +2,7 @@ default:
 	nasm -f bin boot.asm -o boot.bin
 
 hint:
-	python shuffle_chars.py
+	python ./tools/shuffle_chars.py
 
 	mv chars.asm _chars.asm
 	mv chars_shuffled.asm chars.asm
@@ -12,10 +12,10 @@ hint:
 	mv _chars.asm chars.asm
 
 final:
-	python shuffle_chars.py
+	python ./tools/shuffle_chars.py
 	
 	mv flag.asm _flag.asm
-	echo 'FLAG: times 32 db 0' > flag.asm
+	echo 'FLAG: ' > flag.asm
 
 	mv chars.asm _chars.asm
 	mv chars_shuffled.asm chars.asm
@@ -24,6 +24,8 @@ final:
 
 	mv _chars.asm chars.asm
 	mv _flag.asm flag.asm
+
+	python ./tools/scramble_end.py
 
 boot:
 	qemu-system-x86_64 \

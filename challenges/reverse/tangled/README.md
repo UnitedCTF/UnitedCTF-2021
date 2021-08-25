@@ -13,7 +13,15 @@ Can you help me decipher this string?
  - https://github.com/cfenollosa/os-tutorial
  - https://en.wikipedia.org/wiki/BIOS_interrupt_call
  
-# Setup
-Requirements:
+## Setup
+
+### Requirements
+ - python
  - nasm
  - qemu
+
+### How to run
+ - Test : `make && make boot`
+ - Debug : `make && make debug`
+ - Print hint : `make hint && make boot`
+ - Build challenge : `make final`

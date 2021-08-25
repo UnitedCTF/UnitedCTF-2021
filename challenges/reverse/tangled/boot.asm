@@ -60,7 +60,7 @@ main:
 
 %include "flag.asm"
 
-times 510-($-$$) db 0
+times 510-($-$$) db 0x99
 dw 0xAA55
 
 %include "chars.asm"
