@@ -1,8 +1,8 @@
 flags = {
-	'challenge1.py': 'flag1',
-	'challenge2.py': 'flag2',
-	'challenge3.py': 'flag3',
-	'challenge4.py': 'flag4'
+	'challenge1.py': 'FLAG-BabysFirstRedos',
+	'challenge2.py': 'FLAG-EmailAddressesAreHard',
+	'challenge3.py': 'FLAG-AlwaysPepperSomeMallocHereAndThere',
+	'challenge4.py': 'FLAG-ForgiveMeFatherForIHaveSinned'
 }
 
 chall2 = 'united.ctf@xXHaxorzPwnz1337Xx!'

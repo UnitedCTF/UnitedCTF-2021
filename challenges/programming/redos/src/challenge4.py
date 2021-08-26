@@ -4,7 +4,6 @@ import re
 # Max 40 chars
 # Top answer: 11.5m steps
 
-# Forgive me father, for I have sinned.
 msg = input()
 s = map(ord, msg)
 
