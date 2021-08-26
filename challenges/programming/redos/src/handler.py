@@ -61,7 +61,15 @@ class Handler (socketserver.StreamRequestHandler):
 		self.finish()
 
 	def chall1(self):
-		self.quit()
+		m = 'Selected Challenge 1, enter answer:'
+		self.send_message(m)
+
+		d = {
+			'filename': 'challenge1.py',
+			'max_chars': 8,
+			'target_steps': 2000}
+
+		self.run_challenge(**d)
 
 	def chall2(self):
 		m = 'Selected Challenge 2, enter answer:'
@@ -75,7 +83,15 @@ class Handler (socketserver.StreamRequestHandler):
 		self.run_challenge(**d)
 
 	def chall3(self):
-		self.quit()
+		m = 'Selected Challenge 3, enter answer:'
+		self.send_message(m)
+
+		d = {
+			'filename': 'challenge3.py',
+			'max_chars': 32,
+			'target_steps': 64000}
+
+		self.run_challenge(**d)
 
 	def chall4(self):
 		m = 'Selected Challenge 4, enter answer:'

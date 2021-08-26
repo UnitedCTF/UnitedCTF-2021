@@ -1,6 +1,5 @@
 import re
 
-# 32 max, minimum 40k itérations
 # Mise en contexte: On a demandé au stagiaire de nous pomper un regex qui match des addresses courriel.
 # Après 3 semaines, y nous a sorti ça
 # Y'a même pris la peine d'écrire de la doc
