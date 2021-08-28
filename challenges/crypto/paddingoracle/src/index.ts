@@ -38,7 +38,7 @@ app.use(function (
   res: express.Response,
   next: express.NextFunction
 ) {
-  setTimeout(() => res.status(400).send(err.message));
+  res.status(400).send(err.message);
 });
 
 app.listen(Number(process.env.PORT || 5000));
