@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html
+  style="
+    background-color: black;
+    color: greenyellow;
+    font-family: 'Press Start 2P';
+    font-size: 12px;
+  "
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Free online aes-128-cbc crypto service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Press%20Start%202P"
+    />
+    <script>
+      function submit(action) {
+        fetch(
+          (action === "encrypt"
+            ? "/encrypt?plaintext="
+            : "/decrypt?ciphertext=") +
+            encodeURIComponent(document.getElementById("input").value)
+        )
+          .then((r) => r.text())
+          .then((text) => {
+            document.getElementById("req").style.display = "none";
+            document.getElementById("res").style.display = "inherit";
+            document.getElementById("txt").innerText = text;
+          });
+      }
+
+      function reset() {
+        document.getElementById("req").style.display = "inherit";
+        document.getElementById("res").style.display = "none";
+        document.getElementById("txt").innerText = "";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Free online aes-128-cbc crypto service</h1>
+    <h4>Create and share secret messages with your friends!</h4>
+    <table id="req">
+      <tbody>
+        <tr>
+          <td colspan="2">
+            <input
+              type="text"
+              id="input"
+              placeholder="Plaintext or ciphertext"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td style="box-sizing: border-box">
+            <button style="width: 100%" onclick="submit('encrypt')">
+              encrypt
+            </button>
+          </td>
+          <td style="box-sizing: border-box">
+            <button style="width: 100%" onclick="submit('decrypt')">
+              decrypt
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table id="res" style="display: none">
+      <tbody>
+        <tr>
+          <td id="txt"></td>
+        </tr>
+        <tr>
+          <td style="box-sizing: border-box">
+            <button style="width: 100%" onclick="reset()">reset</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    Note: The word FLAG has been banned from encryption because of hackers
+    abusing the service.
+  </body>
+</html>
