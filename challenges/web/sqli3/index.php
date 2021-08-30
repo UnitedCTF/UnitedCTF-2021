@@ -26,7 +26,7 @@
 	}
 
 	$status = "";
-	$filename = "/tmp/sqli1.sqlite";
+	$filename = "/tmp/sqli3.sqlite";
 
 	// Test submitted login info for validity
 	if (isset($_POST['u']) && !empty($_POST['u'])) {
@@ -34,18 +34,31 @@
 
 			$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
 			$results = @$db->query('SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"');
-			// vulnérable à: " or 1=1--
+			// vulnérable à: " or 1=1 order by username asc limit 1 --
 
-			if (!$results) {
-				// Fatal error, SQL query may be invalid
+			if (gettype($results) == "boolean") {
 				$status = "SQL error";
-			} else if ($row = $results->fetchArray()) {
-				// Success
-				echo '<div class="flag"><h1><br><br><br></h1><h1>Login success!!</h1><h1>' . $row["password"] . '</h1></div>';
-				die();
 			} else {
-				// Failed login
-				$status = "Login failure";
+				$rowcount = 0;
+				//$results->reset(); //Make sure we're at the start.
+				while ($results->fetchArray()) {
+					$rowcount++;
+				}
+				$results->reset();
+
+				if (!$results) {
+					// Fatal error, SQL query may be invalid
+					$status = "SQL error";
+				} else if ($rowcount == 1) {
+					// Success
+					$row = $results->fetchArray();
+					// Leaks other users' passwords here because the challenge doesn't check if the username is admin
+					echo '<div class="flag"><h1><br><br><br></h1><h1>Login success!!</h1><h1>' . $row["password"] . '</h1></div>';
+					die();
+				} else {
+					// Failed login
+					$status = "Login failure";
+				}
 			}
 
 			$db->close();
@@ -64,7 +77,11 @@
 		  )'
 		);
 
-		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "FLAG-2e2a330165e881a8adbf6b56ec724a34makeittrue")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("ben", "ButThatsAnotherUsersPasswordTryAgain")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "FLAG-a5ff034660bff8ce89637ece84e0cff1sortit")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("jammy", "ThatNotTheAdminsPassword")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("alex", "OopsThisIsADifferentPasswordFromADifferentUser")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("george", "ThisPasswordIsFromAnotherUser")');
 
 		$db->close();
 	}
