@@ -1,0 +1,7 @@
+version: "3.0"
+
+services: 
+  lfirce_server:
+    build: .
+    ports:
+     - "5000:80"
