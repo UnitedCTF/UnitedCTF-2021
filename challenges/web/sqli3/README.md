@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Ce troisième défi d'injection SQL est similaire au défi précéden. Il y a plusieurs utilisateurs dans la table `users` et le code vérifie que la requête retourne qu'un seul résultat. Cependant, l'utilisateur `admin` n'est plus le premier dans la table. Donc, l'injection utilsiée précédemment ne fonctionne plus car vous obtiendrez le mauvais résultat.
+Ce troisième défi d'injection SQL est similaire au défi précédent. Il y a plusieurs utilisateurs dans la table `users` et le code vérifie que la requête retourne qu'un seul résultat. Cependant, l'utilisateur `admin` n'est plus le premier dans la table. Donc, l'injection utilsiée précédemment ne fonctionne plus car vous obtiendrez le mauvais résultat.
 
 ## Setup
 
