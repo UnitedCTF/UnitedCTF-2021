@@ -42,7 +42,7 @@ Certains caractères contenus dans le document sont blancs (donc invisibles sur 
 
 `flag-97d4244f362712`
 
-## 4- Caractères une police différente. 
+## 4- Caractères ayant une police différente
 
 Certains caractères utilisent une police différente. La police la plus utilisée dans le document est Arial, mais il y a aussi des caractères qui utilisent la police Open Sans et Verdana. Les caractères utilisant Verdana sont cachés parmis le texte écrit en Arial. Les polices sont très semblables, donc il est difficile de le remarquer si on n'est pas attentif aux détails. 
 
