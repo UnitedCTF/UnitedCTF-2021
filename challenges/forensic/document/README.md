@@ -6,7 +6,7 @@ Ce défi contient 4 flags.
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-_La stéganographie est une forme de dissimulation (ou d'offuscation) d'information dans le but de transmettre un message de manière inaperçue au sein d'un autre message. L'information utile est cachée au premier abord et à l'œil nu, mais non protégée pour qui sait où regarder._ [1](https://www.nomios.fr/actualite/steganographie/)
+_La stéganographie est une forme de dissimulation (ou d'offuscation) d'information dans le but de transmettre un message de manière inaperçue au sein d'un autre message. L'information utile est cachée au premier abord et à l'œil nu, mais non protégée pour qui sait où regarder._[[1]](https://www.nomios.fr/actualite/steganographie/)
 
 La stéganographie peut être aussi simple que de changer l'extension d'un fichier pour rendre plus difficile qu'on en découvre le format et elle peut aller aussi loin que de modifier des bits à une certaine fréquence dans une image afin de cacher de l'information. 
 
