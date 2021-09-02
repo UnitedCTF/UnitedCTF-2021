@@ -26,17 +26,16 @@
 	}
 
 	$status = "";
-	$filename = "/tmp/sqli8.sqlite";
+	$filename = "/tmp/sqli9.sqlite";
 
 	// Test submitted login info for validity
 	if (isset($_POST['u']) && !empty($_POST['u'])) {
 		if (isset($_POST['p']) && !empty($_POST['p'])) {
-			$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
-			$reqstr = 'SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"';
-
-			if (stripos($reqstr, 'flag') === false) {
+			if (stripos($_POST['u'], ' ') === false && stripos($_POST['p'], ' ') === false) {
+				$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
+				$reqstr = 'SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"';
 				$results = @$db->query($reqstr);
-				// vulnérable à:   " union select 1,* from flag--
+				// vulnérable à:  "/**/union/**/select/**/1,2,flag/**/from/**/flag--
 
 				if (gettype($results) == "object") {
 					if (!$results) {
@@ -53,11 +52,12 @@
 				} else {
 					$status = "SQL error";
 				}
-			} else {
-				$status = "Forbidden word detected";
-			}
 
-			$db->close();
+				$db->close();
+
+			} else {
+				$status = "Forbidden character detected";
+			}
 		}
 	}
 
@@ -74,14 +74,14 @@
 		);
 
 		$db->query(
-		'CREATE TABLE IF NOT EXISTS "cKretTblName" (
+		'CREATE TABLE IF NOT EXISTS "flag" (
 			"id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 			"flag" VARCHAR
 		  )'
 		);
 
-		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "N0t1nTh3r3,1nT#30th3rT@bl3")');
-		$db->query('INSERT INTO "cKretTblName" ("flag") VALUES ("FLAG-a7541918ece21a8dc17a3dc9bae1f23bYoureTheBoss")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "DummyPassword")');
+		$db->query('INSERT INTO "flag" ("flag") VALUES ("FLAG-8f9f741bb17cc4176c357d6028c4aa70c994bc75")');
 
 		$db->close();
 	}
