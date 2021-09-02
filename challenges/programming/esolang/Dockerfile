@@ -20,6 +20,12 @@ RUN npm install
 
 COPY ./web/. ./
 
+COPY ./tests/. ./tests/
+
+COPY ./challenges/. ./challenges/
+
+COPY ./interpreters/js/. ./interpreter/
+
 COPY --from=interpreter /app/out/ctfl.js ./public/
 
 CMD npm start

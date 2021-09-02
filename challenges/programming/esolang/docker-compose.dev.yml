@@ -12,7 +12,10 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    entrypoint: ["npm", "run", "dev"]
     volumes:
       - ./web/src:/app/src
       - ./web/views:/app/views
       - ./web/partials:/app/partials
+      - ./tests:/app/tests
+      - ./challenges:/app/challenges

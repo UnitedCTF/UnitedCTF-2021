@@ -1,4 +1,7 @@
 import express from 'express';
+import fs from 'fs';
+// import { Interpreter } from '../../interpreters/js/src/webpack';
+import { Interpreter } from '../interpreter/src/webpack';
 
 const PORT = process.env.PORT || 1337;
 
@@ -9,6 +12,83 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index');
+});
+
+function testCode(code: string, input: string): boolean {
+    const MAX_ITER = 10000;
+
+    let fedInput = input;
+    let interpreter = new Interpreter(code, () => {
+        let nextChar = fedInput.charAt(0);
+        fedInput = fedInput.substring(1);
+        return nextChar;
+    });
+
+    let count = 0;
+    while(interpreter.step() && count < MAX_ITER) { count++ }
+
+    if(count == MAX_ITER) return false;
+
+    return interpreter.output.split("").reverse().join("") === input.substring(0, input.length - 1);
+}
+
+app.get('/challenge', (req, res) => {
+    let code = "";
+    let solution = "";
+    if(req.query.code) {
+        code = req.query.code as string;
+
+        try {
+            if(testCode(code, "ABC0")) {
+                solution = fs.readFileSync("./challenges/3/FLAG").toString();
+            } else {
+                solution = "The program is not a solution.";
+            }
+        } catch(e) {
+            solution = `The program failed: ${e}`;
+        }
+
+    }
+
+    res.render('challenge', { code, solution });
+});
+
+function base64url(data: Buffer | string): string {
+    return Buffer.from(data).toString('base64').replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+}
+
+function loadCTF(file: string): string {
+    return base64url(fs.readFileSync(file));
+}
+
+app.get('/gallery', (req, res) => {
+    res.render('gallery', { programs: [
+        {
+            "name": "Alphabet",
+            "description": "Program to display the whole alphabet.",
+            "program": loadCTF("./tests/alphabet.ctf")
+        },
+        {
+            "name": "Hello World",
+            "description": "Program to display \"Hello World\" using parallelism.",
+            "program": loadCTF("./tests/hello.ctf")
+        },
+        {
+            "name": "Input",
+            "description": "Program to display user input until \"0\".",
+            "program": loadCTF("./tests/input.ctf")
+        },
+        {
+            "name": "Meta",
+            "description": "Program to demo meta construction of CTFLang symbols.",
+            "program": loadCTF("./tests/meta.ctf")
+        },
+        {
+            "name": "Challenge",
+            "description": "Program for debugging challenge.",
+            "program": loadCTF("./challenges/2/challenge.ctf")
+        }
+    ]});
 });
 
 app.get('/playground', (req, res) => {

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>CTFLang | Challenge</title>
+        <%- include('../partials/base-head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            p, .challenge {
+                padding: 0em 10em;
+            }
+
+            #code {
+                font-family: monospace;
+                height: 50%;
+                resize: none;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <br/>
+        <p>Enter a program to <code>reverse</code> a "0" terminated string from <code>stdin</code>:</p>
+        <form method="GET" action="" class="challenge">
+            <textarea name="code" id="code" class="form-control"><%= code %></textarea>
+            <br/>
+            <input class="form-control answer" value="<%= solution %>" readonly/>
+            <br/>
+            <input type="submit" class="form-control btn btn-primary bi-play-fill"/>
+        </form>
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

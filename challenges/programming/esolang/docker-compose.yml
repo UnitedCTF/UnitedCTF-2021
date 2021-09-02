@@ -12,3 +12,4 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    entrypoint: ["npm", "start"]
