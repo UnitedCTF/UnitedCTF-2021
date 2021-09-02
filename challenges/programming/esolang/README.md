@@ -34,6 +34,7 @@ Requirements:
 Start:
 
 ```
+Development: docker-compose -f docker-compose.dev.yml up
 Production: docker-compose up
 ```
 
