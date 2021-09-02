@@ -1,6 +1,6 @@
-# CTF-Lang Python
+# CTFLang Python
 
-A Python interpreter for CTF-Lang.
+A Python interpreter for CTFLang.
 
 ## Usage
 

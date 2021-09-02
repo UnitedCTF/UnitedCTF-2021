@@ -1,4 +1,4 @@
-# CTF-Lang
+# CTFLang
 
 > Programming
 
@@ -6,11 +6,11 @@ Author: @alexandre-lavoie
 
 ## Overview
 
-Esoteric Programming Languages (Esolangs) are programming languages that are designed to be weird, hard, and/or a joke. Often included in CTFs are `BrainFuck` and `JSFuck`. To introduce more challenge, a custom esolang `CTF-Lang` was created for this CTF.
+Esoteric Programming Languages (Esolangs) are programming languages that are designed to be weird, hard, and/or a joke. Often included in CTFs are `BrainFuck` and `JSFuck`. To introduce more challenge, a custom esolang `CTFLang` was created for this CTF.
 
 ## Specification
 
-A `SPECIFICATION.md` is provided to describe `CTF-Lang`. The interpreters were designed around this document. 
+A `SPECIFICATION.md` is provided to describe `CTFLang`. The interpreters were designed around this document. 
 
 ## Challenges
 

@@ -1,7 +1,7 @@
 {
-  "name": "ctf-lang",
+  "name": "ctflang",
   "version": "1.0.0",
-  "description": "Interpreter for CTF-Lang",
+  "description": "Interpreter for CTFLang",
   "main": "index.js",
   "scripts": {
     "start": "ts-node ./src/node.ts",

@@ -1,10 +1,10 @@
-# CTF-Lang
+# CTFLang
 
-`CTF-Lang` is a two-dimensional stack-based multiprogramming language similar to `Befunge`. The language was designed to be alot like a 2D-ASCII game, with multiple "characters" roaming around a "map". This makes `CTF-Lang` very unpredictable and full of race conditions...
+`CTFLang` is a two-dimensional stack-based multiprogramming language similar to `Befunge`. The language was designed to be alot like a 2D-ASCII game, with multiple "characters" roaming around a "map". This makes `CTFLang` very unpredictable and full of race conditions...
 
 ## Program Counter (PC)
 
-A PC `@` in `CTF-Lang` is a compound datastructure defined as follows.
+A PC `@` in `CTFLang` is a compound datastructure defined as follows.
 
 ```
 class PC:

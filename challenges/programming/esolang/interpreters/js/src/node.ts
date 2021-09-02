@@ -7,7 +7,7 @@ function getInput(): string {
     return readlineSync.question('Enter: ');
 }
 
-let parser = new argparse.ArgumentParser({description: "CTF-Lang Interpreter."});
+let parser = new argparse.ArgumentParser({description: "CTFLang Interpreter."});
 
 parser.add_argument('file', {help: "File to interpret."});
 parser.add_argument('--debug', {help: 'Displays interpreter memory.', action: 'store_true'});
