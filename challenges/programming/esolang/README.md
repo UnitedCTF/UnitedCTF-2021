@@ -14,7 +14,7 @@ A `SPECIFICATION.md` is provided to describe `CTF-Lang`. The interpreters were d
 
 ## Challenges
 
-Given the scale of the repo, challenges were split off into `./challenges`. The challenges should be prefaced by this overview, provide the specification document, and a link to the website.
+Given the scale of the repo, challenges were split off into `./challenges`. The challenges should be prefaced by the previous overview, provide the specification document, and a link to the website. Additionally, a comment needs to be added regarding the irregular flag format that is `[A-Z_]*`. The base format is provided as `./challenges/FORMAT.md`.
 
 ## Resources
 
