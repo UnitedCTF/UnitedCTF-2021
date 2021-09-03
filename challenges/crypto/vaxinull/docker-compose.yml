@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  web:
+    container_name: web-vaxinull
+    ports:
+      - "1337:1337"
+    environment:
+      PORT: 1337
+      ENVIRONMENT: "production"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    entrypoint: ["npm", "start"]
