@@ -14,8 +14,8 @@ bool checkIfOverpowered(std::vector<int> &choices, std::vector<int> opCharacterI
 
 int main() {
     std::vector<int> choices;
-    std::vector<int> opCharacterIds{6, 11, 14, 15, 20, 22, 28, 29, 28, 31, 32, 37, 40, 32, 41, 44};
-
+//    std::vector<int> opCharacterIds{6, 11, 14, 15, 20, 22, 28, 29, 28, 31, 32, 37, 40, 32, 41, 44};
+    std::vector<int> opCharacterIds{2, 3};
     auto defaultChoices = std::vector<std::pair<std::string, std::string>>{
             {"Return to customization screen", "start"},
             {"Quit",                           "quit"}
@@ -173,7 +173,7 @@ int main() {
                  defaultChoices),
             Menu("select_bow", "Bow of swiftness selected.\nSelect what you'd like to do next\n", 44,
                  defaultChoices),
-            Menu("quit", "Good luck on the battlefield, Gamer.", 0, {})
+            Menu("quit", "", 0, {})
     };
 
     auto menu = std::find(game.begin(), game.end(), "start");
@@ -202,6 +202,8 @@ int main() {
             std::cout << "Flag file missing." << std::endl;
         }
     }
+
+    std::cout << "Good luck on the battlefield, Gamer." << std::endl;
 
     return 0;
 }
