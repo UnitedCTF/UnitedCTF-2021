@@ -72,4 +72,6 @@ If you append the previous as `b64_head.b64_compressed_body.signature` and conve
 ## 4 - ISS
 
 Same strategy as previous problem but now you have to host JWKS. You can point the JWT to your host with `"iss": "http://your.url"` and it will cause an "SSRF" to get the `/.well-known/jwks.json` (of course, not exposing the private key `d`). Given you know the `d`, you can "forge" a JWT then convert to SHC and submit it like last problem and get the flag.
-  
+
+If you managed to get here, you'd essentially be able to bypass the early version of `VaxiCode Verif`! 
+   
