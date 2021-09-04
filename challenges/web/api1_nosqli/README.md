@@ -1,14 +1,23 @@
 # Quotes-A-Day 1
 
 > Web <br>
-> Author: @Strix
+> Author: @StrixSC (Nawras M.-A.)
 
-# Challenge
+## Prompt
 
-We've built a brand new API to allow our users to get an inspirational quote on demand!
-Our security team has yet to approve it for production, but I really think we did everything right
+Nous avons créé une toute nouvelle API pour permettre à nos utilisateurs d'obtenir une citation inspirante sur demande !
 
-Checkout our documentation to get started! `URL DU CHALLENGE/docs`
+Notre équipe de sécurité doit encore approuver la mise en production, mais je pense vraiment que nous avons tout fait correctement.
+
+Consultez notre documentation pour commencer ! `URL DU CHALLENGE/docs`
+
+## Description (In french):
+
+Une API est l'acronyme de Application Programming interface (interface de programmation d'applications), qui est simplement un moyen de faire communiquer deux applications afin de partager leurs données. De nos jours, il est très courant qu'une application aille chercher des données ailleurs, ou qu'elle manipule une application à partir d'une autre application. Cela peut être fait en exposant une API et en permettant aux utilisateurs d'interroger l'API à l'aide de requêtes HTTP. En général, ces interfaces nécessitent une forme d'authentification pour assurer que l'utilisateur n'est pas un robot ou une personne mal intentionnée. Cette forme d'authentification peut être une clé d'API, un mot de passe et un nom d'utilisateur, un code et un jeton d'accès, etc. Ces API sont généralement documentées par des interfaces de documentation accessibles à partir d'un navigateur Web. 
+
+Dans ce défi, vous utiliserez une API qui génère des citations. La documentation peut être trouvée en naviguant vers la route `/docs` de votre navigateur. 
+
+## Flag
 
 FLAG: `FLAG-N0SQL_D0ESNT_M3AN_N0_SQLi`
 

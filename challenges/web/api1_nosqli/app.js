@@ -9,6 +9,7 @@ const swagger = require('swagger-ui-express');
 const swaggerJsDocs = require('swagger-jsdoc')
 const cors = require('cors');
 const quotes = require('inspirational-quotes');
+const e = require('express');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -147,12 +148,19 @@ mongo.MongoClient.connect(process.env.MONGO_URL)
                 valid = false;
             }
 
+            let id;
+            try {
+                id = new mongo.ObjectId(req.query.API_KEY);
+            } catch (e) {
+                valid = false;
+                console.log(e);
+            }
+
             if (!valid) {
                 return res.status(403).send({message: "Invalid or missing API Key"});
             }
 
-            const user = await db.collection('users').findOne({'_id': new mongo.ObjectId(req.query.API_KEY)});
-            console.log(user);
+            const user = await db.collection('users').findOne({'_id': id});
             if (!user) {
                 return res.status(403).send({message: "Valid API Key format, but the user could not be found"});
             }
