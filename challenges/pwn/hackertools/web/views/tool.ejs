@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>HackerTools | <%= name %></title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <script>
+            async function run() {
+                let input = document.querySelector("#input");
+                let output = document.querySelector("#output");
+
+                output.value = await (await fetch("/api/tools/<%= id %>", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json;charset=UTF-8"
+                    },
+                    body: JSON.stringify({ data: input.value })
+                })).text();
+            }
+        </script>
+        <style>
+            h1, h3, p {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/appnav.ejs') %>
+        <br/>
+        <h3><%= name %></h3>
+        <p class="description"><%= description %></p>
+        <br/>
+        <div class="container">
+            <textarea id="input" name="input" class="form-control" style="height: 20vh;"></textarea>
+            <br/>
+            <textarea id="output" name="output" class="form-control" style="height: 20vh;" readonly></textarea>
+            <br/>
+            <button onclick="run()" class="btn btn-primary form-control">Run</button>
+        </div>
+    </body>
+</html>
