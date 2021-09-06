@@ -45,7 +45,7 @@ padding-top: 40px;
 }
 
 .pass {
-    width: 76%;
+width: 76%;
 color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
@@ -67,7 +67,6 @@ font-family: 'Ubuntu', sans-serif;
 
 .un:focus, .pass:focus {
 border: 2px solid rgba(0, 0, 0, 0.18) !important;
-
 }
 
 .submit {
@@ -98,7 +97,20 @@ color: #E1BEE7;
 text-decoration: none
 }
 
+.guest {
+border: none;
+background-color: inherit;
+padding: 14px 28px;
+font-size: 16px;
+cursor: pointer;
+display: inline-block;
+text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+color: #E1BEE7;
+padding-top: 15px;
+font-family: 'Ubuntu', sans-serif;
+}
+
 @media (max-width: 600px) {
 .main {
-    border-radius: 0px;
+border-radius: 0px;
 }
