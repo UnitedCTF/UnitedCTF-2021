@@ -23,3 +23,4 @@ Donc, on l'utilise dans la requête suivante:
 
 Dans ce cas, `1,*` deviendra `1, id, flag`. Comme `flag` est dans le dernier champs, c'est lui qui sera utilisé comme mot de passe.
 
+Le flag obtenu: `FLAG-a7541918ece21a8dc17a3dc9bae1f23bYoureTheBoss`

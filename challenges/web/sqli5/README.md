@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Ce cinquième défi d'injection SQL est identique au défi précédent, cependant le mot `UNION` est se fait filtrer. Le code PHP utilise la ligne de code suivante pour supprimer ce mot clé de la requête SQL: `$reqstr = str_ireplace("union", "", $reqstr);`. Il existe tout de même moyen de parvenir au même résultat qu'au défi précédent et afficher le flag. 
+Ce cinquième défi d'injection SQL est identique au défi précédent, cependant le mot `UNION` se fait filtrer. Le code PHP utilise la ligne de code suivante pour supprimer ce mot clé de la requête SQL: `$reqstr = str_ireplace("union", "", $reqstr);`. Il existe tout de même moyen de parvenir au même résultat qu'au défi précédent et afficher le flag. 
 
 ## Setup
 

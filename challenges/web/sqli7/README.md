@@ -4,9 +4,9 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Ce sptième défi d'injection SQL indentique au défi précédent, cependant vous ne connaissez pas le nom de la table ni de la colonne!
+Ce septième défi d'injection SQL indentique au défi précédent, cependant vous ne connaissez pas le nom de la table ni de la colonne!
 
-Bonne chance.
+Bonne chance!!  :-) 
 
 ## Setup
 

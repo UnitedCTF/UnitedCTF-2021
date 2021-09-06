@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 <head>
 	<title>Web Connect™ Login</title>
@@ -19,10 +22,9 @@
 </head>
 
 <?php
-	if (stripos($_SERVER['HTTP_USER_AGENT'], 'sqlmap') !== false) {
-		// SQLmap detected
-		sleep(rand(1, 10));
-		die();
+	// Rate limiting: Create new session with fresh timestamp
+	if (!isset($_SESSION["last_request"])) {
+		$_SESSION["last_request"] = microtime(true);
 	}
 
 	$status = "";
@@ -32,12 +34,20 @@
 	if (isset($_POST['u']) && !empty($_POST['u'])) {
 		if (isset($_POST['p']) && !empty($_POST['p'])) {
 
-			$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
-			$results = @$db->query('SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"');
-			// vulnérable à:  " union select 1,2,flag from flag--
+			// Rate limiting: Check if last login attempt was more than 100ms ago
+			if (microtime(true) - $_SESSION["last_request"] > 0.1) {
 
-			if (gettype($results) == "object") {
-				if (!$results) {
+				// Basic SQLmap detection
+				if (stripos($_SERVER['HTTP_USER_AGENT'], 'sqlmap') !== false) {
+					// SQLmap detected
+					sleep(rand(1, 10));
+					die();
+				}
+
+				$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
+				$results = @$db->query('SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"');
+
+				if (gettype($results) != "object" || !$results) {
 					// Fatal error, SQL query may be invalid
 					$status = "SQL error";
 				} else if ($row = $results->fetchArray()) {
@@ -48,11 +58,12 @@
 					// Failed login
 					$status = "Login failure";
 				}
-			} else {
-				$status = "SQL error";
+
+				$db->close();
 			}
 
-			$db->close();
+			// Rate limiting: Set new fresh timestamp
+			$_SESSION["last_request"] = microtime(true);
 		}
 	}
 
@@ -75,7 +86,7 @@
 		  )'
 		);
 
-		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "N0t1nTh3r3,1nT#30th3rT@bl3")');
+		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "N0t1nTh3r3,L00k1nT#30th3rT@bl3")');
 		$db->query('INSERT INTO "flag" ("flag") VALUES ("FLAG-373fc3b97cb4cd80d07942d92add1379unionizethis")');
 
 		$db->close();

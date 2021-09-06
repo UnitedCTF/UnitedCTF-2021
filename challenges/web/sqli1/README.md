@@ -16,7 +16,9 @@ La page de connexion de ce défi est vulnérable aux injections SQL. Vous devez 
 
 Pouvoir se connecter n'est pas aussi simple que dans l'exemple ci-dessus, car vous devez trouver un moyen de rendre la requête toujours vraie sachant que vous ne connaissez pas le mot de passe valide. 
 
-Pour ce défi et les défis suivants, il est important de se souvenir que le moteur de base de données est SQLite3. La requête SQL ci-dessus est utilisé dans les défis suivants jusqu'à ce que le contraire soit indiqué (le nom de la table et des colonnes restent donc les mêmes). 
+Pour ce défi et les défis suivants, il est important de se souvenir que le moteur de base de données est SQLite3. La requête SQL ci-dessus est utilisé dans tous les défis. 
+
+Utilisez l'outil [BurpSuite](https://portswigger.net/burp/communitydownload) afin de vous aider. Cet outil permet de rejouer des requêtes HTTP et de voir exactement le payload envoyé au site web.
 
 ## Setup
 

@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Ce quatrième défi d'injection SQL requiert de charger des données qui sont dans une autre table. La table `users` ne contient qu'un seul utilisateur: `admin`. Cependant, il existe une nouvelle table `flag` qui contient un certain nombre de colonnes. Parmis ces colonnes, on trouve la colonne `flag` qui contient ce que vous cherchez. 
+Ce quatrième défi d'injection SQL requiert de charger des données qui sont dans une autre table. La table `users` ne contient qu'un seul utilisateur: `admin`. Cependant, il existe une nouvelle table `flag` qui contient un certain nombre de colonnes. Parmis ses colonnes, on trouve la colonne `flag` qui contient ce que vous cherchez. 
 
 ## Setup
 

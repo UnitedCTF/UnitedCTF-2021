@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Ce sixième défi d'injection SQL similaire aux deux défis prédédents, cependant le flag se cache dans une table aillant un nom inconnu. Vous devez trouver un moyen de l'obtenir puis ensuite récupérer le flag. Le mot clé "union" n'est plus filtré, donc vous avez cet embuche de moins. 
+Ce sixième défi d'injection SQL similaire aux deux défis prédédents, cependant le flag se cache dans une table aillant un nom inconnu. Vous devez trouver un moyen de l'obtenir puis ensuite récupérer le flag. Le mot clé "union" n'est plus filtré, donc vous avez cet embuche en moins. 
 
 Il y a peut-être de l'information qui peut vous aider à résoudre ce défi dans les description de défis précédente. Notez que la colonne où le flag se trouve se nomme toujours "flag".
 

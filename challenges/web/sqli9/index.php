@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 <head>
 	<title>Web Connect™ Login</title>
@@ -19,10 +22,9 @@
 </head>
 
 <?php
-	if (stripos($_SERVER['HTTP_USER_AGENT'], 'sqlmap') !== false) {
-		// SQLmap detected
-		sleep(rand(1, 10));
-		die();
+	// Rate limiting: Create new session with fresh timestamp
+	if (!isset($_SESSION["last_request"])) {
+		$_SESSION["last_request"] = microtime(true);
 	}
 
 	$status = "";
@@ -31,14 +33,23 @@
 	// Test submitted login info for validity
 	if (isset($_POST['u']) && !empty($_POST['u'])) {
 		if (isset($_POST['p']) && !empty($_POST['p'])) {
-			if (stripos($_POST['u'], ' ') === false && stripos($_POST['p'], ' ') === false) {
-				$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
-				$reqstr = 'SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"';
-				$results = @$db->query($reqstr);
-				// vulnérable à:  "/**/union/**/select/**/1,2,flag/**/from/**/flag--
 
-				if (gettype($results) == "object") {
-					if (!$results) {
+			// Rate limiting: Check if last login attempt was more than 100ms ago
+			if (microtime(true) - $_SESSION["last_request"] > 0.1) {
+
+				// Basic SQLmap detection
+				if (stripos($_SERVER['HTTP_USER_AGENT'], 'sqlmap') !== false) {
+					// SQLmap detected
+					sleep(rand(1, 10));
+					die();
+				}
+
+				if (stripos($_POST['u'], ' ') === false && stripos($_POST['p'], ' ') === false) {
+					$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
+					$reqstr = 'SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"';
+					$results = @$db->query($reqstr);
+
+					if (gettype($results) != "object" || !$results) {
 						// Fatal error, SQL query may be invalid
 						$status = "SQL error";
 					} else if ($row = $results->fetchArray()) {
@@ -49,15 +60,16 @@
 						// Failed login
 						$status = "Login failure";
 					}
+
+					$db->close();
+
 				} else {
-					$status = "SQL error";
+					$status = "Forbidden character detected";
 				}
-
-				$db->close();
-
-			} else {
-				$status = "Forbidden character detected";
 			}
+
+			// Rate limiting: Set new fresh timestamp
+			$_SESSION["last_request"] = microtime(true);
 		}
 	}
 
@@ -81,7 +93,7 @@
 		);
 
 		$db->query('INSERT INTO "users" ("username", "password") VALUES ("admin", "DummyPassword")');
-		$db->query('INSERT INTO "flag" ("flag") VALUES ("FLAG-8f9f741bb17cc4176c357d6028c4aa70c994bc75")');
+		$db->query('INSERT INTO "flag" ("flag") VALUES ("FLAG-8f9f741bb17cc4176c357d6028c4aa70c994bc75welld0nehacker")');
 
 		$db->close();
 	}
