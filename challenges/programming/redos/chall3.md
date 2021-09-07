@@ -1,12 +1,13 @@
 # 3. Coding interview
+
 We're impressed so far. Time to prove your worth one last time.
 
 A while back we managed to get our hands on a "language detector" and had a good laugh at their algorithm.\
 Anyway, we extracted the c++ one and sent it to you. Good luck!
 
-**Max chars:** *32*\ 
-**Threshold:** *64k iterations* \
-[Regex File](https://github.com/UnitedCTF/UnitedCTF-2021/new/redos-oli/challenges/programming/redos/src/challenge3.py)
+- **Max chars:** *32*
+- **Threshold:** *64k iterations*
+- [Regex File](https://github.com/UnitedCTF/UnitedCTF-2021/new/redos-oli/challenges/programming/redos/src/challenge3.py)
 
 ## WriteUp
 
