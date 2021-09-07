@@ -5,9 +5,11 @@ Tags: `pwn`
 Level: Medium
 
 ## Description
-I needed a way to take quick notes on the command line.
+I needed a way to take quick notes on the command line. I might have missed something...
 
 Executable: `simple_notes`
+
+Source code: `simple_notes.c`
 
 Libc: `libc.so.6`
 
@@ -28,7 +30,7 @@ docker build -t simple_notes .
 ~~~
 Fetch `libc`.
 ~~~
-docker run --rm -v $(PWD):/vol simple_notes /bin/bash -c 'cp $(ldd /home/simple_notes/simple_notes | grep libc | cut -d " " -f 3) /vol/'
+docker run --rm -v $(pwd):/vol simple_notes /bin/bash -c 'cp $(ldd /home/simple_notes/simple_notes | grep libc | cut -d " " -f 3) /vol/'
 ~~~
 Run the container.
 ~~~
