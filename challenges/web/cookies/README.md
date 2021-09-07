@@ -8,6 +8,8 @@ Un cookie HTTP est un bloc de données sauvegardé sur un ordinateur lorsque vou
 
 Encore aujourd'hui, plusieurs programmeurs font des erreurs en codant des site web et utilisent les cookies de façon à créer des vulnérabilités. Ce site web contient une vulnérabilité qui permet de vous faire passer pour l'utilisateur "admin" et voler ses messages personnels. 
 
+Pour modifier les cookies, plusieurs options s'offrent à vous: Burp Suite, des extensions pour navigateur web comme "Cookie Editor", les DevTools de Chrome... Si vous avez besoin de modifier des encodages ou des données dans un certain format, vous pouvez utiliser CyberChef. 
+
 ## Setup
 
 Requirements:
