@@ -9,6 +9,8 @@
 
 ## Ressources
 - [Python regex doc](https://docs.python.org/3/library/re.html)
+- [OWASP article on redos](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)
+- [Wikipedia page on redos](https://en.wikipedia.org/wiki/ReDoS)
 
 ## Setup
 
