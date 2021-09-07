@@ -57,3 +57,6 @@ Time to build the attack string.
 
 ## Solution
 `f \tffffffffffffffffffff_DaddyIssues`
+
+## Flag
+`FLAG-ForgiveMeFatherForIHaveSinned`
