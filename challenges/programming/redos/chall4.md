@@ -7,7 +7,7 @@ They've got a decent protection so a dumb DDoS won't cut it but a decent REDoS m
 Anyway, here's the threshold we estimated and the leaked regex file as usual.
 
 **Threshold:** *11m iterations* \
-[Regex File](https://github.com/UnitedCTF/UnitedCTF-2021/new/redos-oli/challenges/programming/redos/challenge4.py)
+[Regex File](https://github.com/UnitedCTF/UnitedCTF-2021/new/redos-oli/challenges/programming/redos/src/challenge4.py)
 
 ## WriteUp
 
