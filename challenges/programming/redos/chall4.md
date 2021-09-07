@@ -1,4 +1,4 @@
-# 4. The real challenge
+# 4. The Real Challenge
 
 You've done it! You may be our only chance of success. \
 Our target is a major service company, the less you know the better thrust me. They're doing millions of regex validations per day and all we need is a few seconds of downtime.
