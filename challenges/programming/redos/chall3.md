@@ -1,4 +1,4 @@
-# 3. Coding interview
+# 3. Coding Interview
 
 We're impressed so far. Time to prove your worth one last time.
 
