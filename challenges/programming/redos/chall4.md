@@ -25,7 +25,7 @@ First of all, let's dissamble the regex.
 8. `(?(a{c})(...)|_)`: Matches either *step 7* if **a{c}** exists, else matches a literal underscore.
 
 *Group a14 explanation:*\
-a14 will only match if the precondition doesn't match but it will always match something. If a5 preexists, it will match anything that isn't an empty string ([\w\W]) else it's a dot.\
+a14 will only match if the precondition doesn't match but the condition is always true. If a5 preexists, it will match anything that isn't an empty string ([\w\W]) else it's a dot.\
 Since a5 needs to exists to branch to the first group, we know it will never have only an empty string right before.
 
 The redos is split in 2 parts. The first one is about matching the right groups. It's not to hard to decide which ones need to be matched since **a14** can't exist.\
