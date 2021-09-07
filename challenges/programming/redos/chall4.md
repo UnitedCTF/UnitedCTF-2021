@@ -6,7 +6,8 @@ Our target is a major service company, the less you know the better thrust me. T
 They've got a decent protection so a dumb DDoS won't cut it but a decent REDoS mixed with a distributed attack might be what we're looking for. \
 Anyway, here's the threshold we estimated and the leaked regex file as usual.
 
-**Threshold:** *11m iterations* \
+**Max chars**: *40*\
+**Threshold:** *11.5m iterations* \
 [Regex File](https://github.com/UnitedCTF/UnitedCTF-2021/new/redos-oli/challenges/programming/redos/src/challenge4.py)
 
 ## WriteUp
