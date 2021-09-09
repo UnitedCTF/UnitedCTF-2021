@@ -19,6 +19,6 @@ Taking the rot-13 and reverse of the message, we get: Call me +1 201-331-9910 \
 After calling the number, there is a weird audio recording played: [Audio](https://vocaroo.com/16c8q2Q2wLsJ) \
 Reversing the audio results in a more understandable message: [Audio](https://voca.ro/16LzF8fDHmMH) \
 Transcript:
-> All caps. The flag is: FLAG-RINGRING. Good job, good-bye! \
+> All caps. The flag is: FLAG-RINGRING. Good job, good-bye! 
 
 flag: `FLAG-RINGRING`
