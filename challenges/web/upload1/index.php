@@ -12,13 +12,13 @@ if (!isset($_SESSION["folder"])) {
 	$_SESSION["folder"] = $folder;
 } else {
 	// Make sure the folder does exist
-	if (!is_dir("uploads/" . $_SESSION["folder"])) {
-		mkdir("uploads/" . $_SESSION["folder"]);
+	if (!is_dir($_SESSION["folder"])) {
+		mkdir($_SESSION["folder"]);
 	}
 
 	// Delete files of recurring visitors after a while
-	if (time() - $_SESSION["creation"] > 60 * 60 * 6) {
-		$scanned_folder = array_diff(scandir($_SESSION["folder"]), array('..', '.'));
+	if (time() - $_SESSION["creation"] > 60 * 60 * 1) {
+		$scanned_folder = array_values(array_diff(scandir($_SESSION["folder"]), array('..', '.')));
 		foreach ($scanned_folder as $file) {
 			$file_path = $_SESSION["folder"] . $file;
 			unlink($file_path);
@@ -93,7 +93,7 @@ if (!isset($_SESSION["folder"])) {
 // Picture upload handling
 if (isset($_FILES["upfile"])) {
 	// Too many files? Just delete one randomly.
-	$scanned_folder = array_diff(scandir($_SESSION["folder"]), array('..', '.'));
+	$scanned_folder = array_values(array_diff(scandir($_SESSION["folder"]), array('..', '.')));
 	if (count($scanned_folder) > 16) {
 		$file_path = $_SESSION["folder"] . $scanned_folder[rand(0, 16)];
 		unlink($file_path);
@@ -114,7 +114,7 @@ if (isset($_FILES["upfile"])) {
 		<br/>
 <?php
 // Show gallery of uploaded images
-	$scanned_folder = array_diff(scandir($_SESSION["folder"]), array('..', '.'));
+	$scanned_folder = array_values(array_diff(scandir($_SESSION["folder"]), array('..', '.')));
 	if (count($scanned_folder) > 0) {
 		echo "<hr width=\"500px\"/>";
 	}
