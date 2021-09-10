@@ -14,8 +14,7 @@ bool checkIfOverpowered(std::vector<int> &choices, std::vector<int> opCharacterI
 
 int main() {
     std::vector<int> choices;
-//    std::vector<int> opCharacterIds{6, 11, 14, 15, 20, 22, 28, 29, 28, 31, 32, 37, 40, 32, 41, 44};
-    std::vector<int> opCharacterIds{2, 3};
+    std::vector<int> opCharacterIds{6, 11, 14, 15, 20, 22, 28, 29, 28, 31, 32, 37, 40, 32, 41, 44};
     auto defaultChoices = std::vector<std::pair<std::string, std::string>>{
             {"Return to customization screen", "start"},
             {"Quit",                           "quit"}

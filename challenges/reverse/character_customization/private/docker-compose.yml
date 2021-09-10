@@ -3,5 +3,7 @@ services:
   server:
     build: .
     environment:
-        - SERVER_PORT=9001
-        - SERVER_URL=0.0.0.0
+        - PORT=9001
+        - URL=0.0.0.0
+    ports:
+      - '9001:9001'

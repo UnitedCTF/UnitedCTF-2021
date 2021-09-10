@@ -4,7 +4,7 @@ import subprocess
 
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
-listener.bind(('0.0.0.0', 9001)) 
+listener.bind('0.0.0.0', 9001)
 listener.listen(5)
 print(listener.getsockname())
 
