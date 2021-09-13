@@ -17,6 +17,9 @@ The catch is that, in the **higherLevelDomains** group, the dot isn't escaped, w
 If you put anything else than an alphanumeric char, it significantly reduces the number of iterations since it can only be matched by the dot instead of having thousands of possibilities like we want with a redos.
 The last exclamation mark is there to make sure it doesn't shortcircuits a match. Since it's not followed by an alphanumerical character it will be matched by the dot but not the \w (which is needed because of the +).
 
+Bonus:\
+The "followingWord" group is there to show how to escape the dot in a regex.
+
 ## Solution
 `united.ctf@xXHaxorzPwnz1337Xx!`
 
