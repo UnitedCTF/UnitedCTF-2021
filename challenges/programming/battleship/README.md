@@ -4,8 +4,8 @@ Author: @KptCheeseWhiz
 
 ## Challenge
 
-Can you beat this game within the timeframe? I managed to get a part of the source code, maybe it can help you?
- - the file src/random.ts is given
+Can you beat this game within the timeframe? I managed to get the source code, maybe it can help you?
+ - the whole source code is given
 
 ## Resources
 
