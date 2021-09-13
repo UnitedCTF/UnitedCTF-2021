@@ -40,10 +40,11 @@
   <form method="GET" action="/">
     <select name="pasta">
       <?php
+      // FLAG-THAT_IS_NOT_A_COPYPASTA
       $files = scandir("./pastas");
       $selected = isset($_GET["pasta"]) ? $_GET["pasta"] : "";
       for ($i = 2; $i < count($files); $i++) {
-        echo "<option value='" . $files[$i] . "'" . ($selected == $files[$i] ? "selected" : "") . ">";
+        echo "<option value='./pastas/" . $files[$i] . "'" . ($selected == $files[$i] ? "selected" : "") . ">";
         echo substr($files[$i], 0, -4);
         echo "</option>";
       }
@@ -52,9 +53,9 @@
     <input type="submit" />
   </form>
   <?php
-  if (isset($_GET["pasta"])) {
+  if (isset($_GET["pasta"]) && $_GET["pasta"]) {
     echo "<pre>";
-    include("./pastas/" . $_GET["pasta"]);
+    include($_GET["pasta"]);
     echo "</pre>";
   }
   ?>
