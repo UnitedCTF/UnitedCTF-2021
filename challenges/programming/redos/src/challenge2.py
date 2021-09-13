@@ -8,8 +8,5 @@ regex = r'^(?P<firstWord>\w+)(?P<followingWords>\.\w+)*(?P<extention>\+\w+)?@(?P
 # subdomain: On doit avoir un domaine initial
 # higherLevelDomains: Et avoir au moins 1 domaine de plus haut niveau (séparé par un . à chaque fois)
 
-# Faille: dans higherLevelDomains, le . est pas escaped donc il match n'importe quel caractère, ce qui permet d'abuser un redos.
-# Indice implicite: followingWords existe juste pour montrer comment actually excape un .
-
 msg = input()
 print(re.match(regex, msg))
