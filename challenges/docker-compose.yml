@@ -129,4 +129,25 @@ services:
       context: "./web/pastagen"
     restart: unless-stopped
     ports:
-      - "10011:80"
+      - 10011:80
+
+  web_api1_nosqli:
+    restart: always
+    build: "./web/api1_nosqli"
+    environment:
+      - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
+      - MONGO_INITDB_DATABASE=api1
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_api1_nosqli_mongo:27017/api1?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    ports:
+      - 10012:3000
+    external_links:
+      - web_api1_nosqli_mongo
+    depends_on: 
+      - web_api1_nosqli_mongo
+
+  web_api1_nosqli_mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=46UeIA53nSKeeeryixbu
+      - MONGO_INITDB_DATABASE=api1
