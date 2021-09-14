@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Pour ce quatrième défi, la faille de l'application précédante a été corrigée. Cependant, le développeur au commit une petite erreur dans son pipeline CI/CD et la version de PHP a été rétrogradée.
+Pour ce quatrième défi, le concepteur du site web a remplacé son mécanisme de validation des extensions afin d'interdire tout fichier qui a un extension ".php" et les extensions similaires qui sont des script qui peuvent s'exécuter. Il pense que cela est plus efficace.
 
 ## Setup
 
@@ -13,6 +13,17 @@ Requirements:
 
 # Writeup
 
-Vous devez téléverser un fichier avec la même procédure que dans dans `File upload vulnerability 3`, cependant, l'application vérifie correctement que l'extension est à la fin. Cependant, la version de PHP a été rétrogradée. Sur la page d'erreur, on découvre le numéro de la version. On peut ensuite trouver que cette version est vulnérable à des null-byte injections. Donc, on insère un null-byte dans l'extension du fichier malveillant afin de le téléverser. 
+En faisant des tests, on découvre que le site permet tous les types de fichiers. Il ne prévient que le téléversement de fichiers PHP, templates PHP, etc.
 
-Flag: `flag-a6ca1b1cf72b8617699d1nullinjection`
+On peut donc forcer l'exécution d'autres fichiers comme du PHP. Voici un exemple avec les fichiers .png: 
+
+Dans un fichier `.htaccess`, téléverser: 
+```
+AddHandler application/x-httpd-php .png
+```
+
+On pourra ensuite téléverser des fichier "PNG" qui, lorsque accédés, seront exécutés comme du PHP. 
+
+On peut obtenir le flag:
+
+Flag: `flag-08dfacc89843e423htaccessdanger`

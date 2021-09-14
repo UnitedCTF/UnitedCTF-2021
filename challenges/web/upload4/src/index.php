@@ -1,25 +1,35 @@
 <?php
-// flag-a6ca1b1cf72b8617699d1nullinjection
+// flag-08dfacc89843e423htaccessdanger
 session_start();
 
-// https://stackoverflow.com/a/41038764
-function random_bytes($length = 24)
-{
-	$characters = '0123456789abcdef';
-	$characters_length = strlen($characters);
-	$output = '';
-	for ($i = 0; $i < $length; $i++) {
-		$output .= $characters[rand(0, $characters_length - 1)];
+function blacklisted($filename) {
+
+	$disallowed = array(
+		".php",
+		".pht",
+		".phtm",
+		".phtml",
+		".pgif",
+		".shtml",
+		".phar",
+		".phps",
+		".inc",
+	);
+
+	foreach ($disallowed as $v) {
+		if (stripos($filename, $v) !== false) {
+			return true;
+		}
 	}
 
-	return $output;
+	return false;
 }
 
 if (!isset($_SESSION["folder"])) {
 	$_SESSION["creation"] = time();
-	$folder = "uploads/" . random_bytes(48) . "/";
+	$folder = "uploads/" . bin2hex(random_bytes(24)) . "/";
 	while (is_dir($folder)) {
-		$folder = "uploads/" . random_bytes(48) . "/";
+		$folder = "uploads/" . bin2hex(random_bytes(24)) . "/";
 	}
 	mkdir($folder);
 	$_SESSION["folder"] = $folder;
@@ -114,19 +124,12 @@ if (isset($_FILES["upfile"])) {
 
 	// Install file to personal folder
 	$filename = $_FILES["upfile"]["name"];
-	$path_parts = pathinfo($filename);
-	$extension = $path_parts['extension'];
-// essayer substr  https://stackoverflow.com/questions/14791790/null-byte-injection-in-an-upload-form
-// https://hub.docker.com/r/frank081/docker-php-5.3.3/dockerfile/
-echo($extension);
-echo("<br>");
-echo($filename);
 	if ($_FILES['upfile']['size'] > 131072 || $_FILES['upfile']['error'] === UPLOAD_ERR_INI_SIZE) {
 		echo "Cannot upload files larger than 128KB.";
 	} else if ($_FILES["upfile"]["type"] != "image/png" && $_FILES["upfile"]["type"] != "image/jpg" &&
 		       $_FILES["upfile"]["type"] != "image/jpeg" && $_FILES["upfile"]["type"] != "image/png") {
 		echo "This file extension is not supported.";
-	} else if ($extension !== "png" && $extension !== "jpg" && $extension !== "jpeg" && $extension !== "gif") {
+	} else if (blacklisted($filename)) {
 		echo "This file extension is not supported.";
 	} else if (move_uploaded_file($_FILES['upfile']['tmp_name'], $_SESSION["folder"] . $filename)) {
 		echo "Your file got uploaded successfully.";

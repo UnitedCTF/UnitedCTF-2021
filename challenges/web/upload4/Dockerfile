@@ -1,7 +1,9 @@
-FROM tommylau/php-5.2
+FROM php:8.0.10-apache
 
-COPY src /project
-RUN mkdir /project/uploads
+RUN apt-get update -y && apt-get upgrade -y
 
-RUN chown -R root:www-data /project/uploads
-RUN chmod -R 733 /project/uploads
+COPY src /var/www/html
+RUN mkdir /var/www/html/uploads
+
+RUN chown -R root:www-data /var/www/html/uploads
+RUN chmod -R 733 /var/www/html/uploads
