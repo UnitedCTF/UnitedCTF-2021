@@ -11,7 +11,6 @@ services:
       - PORT=5000
 
       - CHANCE_FOR_WAVE=0.15
-      - WINS_FOR_FLAG=3
       - TIMEOUT=60000
 
       - FLAG_1=FLAG-MMM_THERE_HAS_TO_BE_A_TRICK_TO_IT
