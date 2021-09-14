@@ -1,0 +1,15 @@
+version: "3.0"
+
+services:
+  app:
+    build:
+      context: "."
+    restart: "unless-stopped"
+    environment: 
+      - NODE_ENV=production
+      - PORT=5000
+      
+      - SLEEP_TIME=0
+      - FLAG=FLAG-SHOULD_HAVE_USED_ENC_THEN_MAC_INSTEAD
+    ports: 
+      - 11112:5000
