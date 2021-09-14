@@ -3,7 +3,7 @@ import qs from 'qs';
 import { Solution } from "../utils";
 import { SHC } from '../../src/shc';
 
-const URL = "http://localhost:1337/samples/2";
+const URL = "http://localhost:4200/samples/2";
 
 export class Solve extends Solution {
     public async solve() {

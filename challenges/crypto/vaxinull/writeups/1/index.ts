@@ -4,7 +4,7 @@ import Jimp from 'jimp';
 import { Solution } from "../utils";
 import { SHC } from '../../src/shc';
 
-const URL = "http://localhost:1337/samples/1";
+const URL = "http://localhost:4200/samples/1";
 
 export class Solve extends Solution {
     public async solve() {

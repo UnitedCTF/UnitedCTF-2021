@@ -4,7 +4,7 @@ import { Solution } from "../utils";
 import { SHC } from '../../src/shc';
 import { JWK } from '../../src/jws';
 
-const URL = "http://localhost:1337/samples/3";
+const URL = "http://localhost:4200/samples/3";
 
 export class Solve extends Solution {
     public async solve() {

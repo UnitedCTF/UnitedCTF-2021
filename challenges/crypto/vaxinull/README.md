@@ -35,4 +35,4 @@ Start:
 Production: docker-compose up
 ```
 
-(The challenge will be locally hosted at http://localhost:1337/).
+(The challenge will be locally hosted at http://localhost:4200/).
