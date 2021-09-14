@@ -1,0 +1,8 @@
+version: "3.0"
+
+services: 
+  pastagen_server:
+    build: .
+    restart: unless-stopped
+    ports:
+     - "5000:80"
