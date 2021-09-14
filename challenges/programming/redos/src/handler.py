@@ -130,13 +130,12 @@ class Handler (socketserver.StreamRequestHandler):
 				f'Your solution took {format_number(n)} steps',
 				f'You need to hit at least {format_number(target_steps)}.'
 			)
-			self.send_message(m)
 		else:
 			m = (
 				f'You did it with {format_number(n)} steps!',
 				f"Here's your flag: {flags[filename]}"
 			)
-			self.send_message(m)
 
+		self.send_message(m)
 		self.serve()
 
