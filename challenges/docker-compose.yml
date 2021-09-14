@@ -28,6 +28,24 @@ services:
     ports:
       - 11112:5000
 
+  # PROGRAMMING
+  programming_battleship:
+    build:
+      context: "./programming/battleship"
+    restart: "unless-stopped"
+    environment: 
+      - NODE_ENV=production
+      - VERSION=0.0.2
+      - PORT=5000
+
+      - CHANCE_FOR_WAVE=0.15
+      - TIMEOUT=60000
+
+      - FLAG_1=FLAG-MMM_THERE_HAS_TO_BE_A_TRICK_TO_IT
+      - FLAG_5=FLAG-ALL_YOUR_SHIPS_ARE_BELONG_TO_US
+    ports: 
+      - 12345:5000
+
   # WEB
   web_cookies:
     build:
