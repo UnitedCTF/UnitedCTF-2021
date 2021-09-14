@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    container_name: api1
+    restart: always
+    build: .
+    environment:
+      - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
+      - MONGO_INITDB_DATABASE=api1
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@mongo:27017/api1?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    ports:
+      - '3000:3000'
+    external_links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=46UeIA53nSKeeeryixbu
+      - MONGO_INITDB_DATABASE=api1
+    ports:
+      - '27017:27017'
