@@ -1,0 +1,4 @@
+/node_modules
+/out
+/src/userdata
+!/src/userdata/.gitkeep
