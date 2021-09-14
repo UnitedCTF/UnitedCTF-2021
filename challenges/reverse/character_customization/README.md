@@ -47,7 +47,7 @@ To start the server and setup the challenge, run the following command:
 
 ```bash
 cd private/
-docker-compose up
+docker-compose up --force-recreate --build --detach
 ```
   
 ## Difficulty
