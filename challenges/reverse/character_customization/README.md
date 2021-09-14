@@ -6,7 +6,8 @@
 
 ## Flag
 
-`FLAG-EZ_REVERS1NG_OP_CHARACTERS`
+`FLAG-REVERSING_IS_FUN_19as8933`
+
 
 ## Prompt
 
