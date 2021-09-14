@@ -1,0 +1,132 @@
+version: "3.0"
+
+services:
+  # CRYPTO
+  crypto_padding_oracle:
+    build:
+      context: "./crypto/paddingoracle"
+    restart: "unless-stopped"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+
+      - FLAG=FLAG-TOO_MANY_ERRORS_TOO_MANY_DETAILS
+    ports:
+      - 11111:5000
+
+  crypto_blind_padding_oracle:
+    build:
+      context: "./crypto/blindpaddingoracle"
+    restart: "unless-stopped"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+
+      # Change me if too much latency
+      - SLEEP_TIME=0
+      - FLAG=FLAG-SHOULD_HAVE_USED_ENC_THEN_MAC_INSTEAD
+    ports:
+      - 11112:5000
+
+  # PROGRAMMING
+  programming_battleship:
+    build:
+      context: "./programming/battleship"
+    restart: "unless-stopped"
+    environment:
+      - NODE_ENV=production
+      - VERSION=0.0.2
+      - PORT=5000
+
+      - CHANCE_FOR_WAVE=0.15
+      - TIMEOUT=60000
+
+      - FLAG_1=FLAG-MMM_THERE_HAS_TO_BE_A_TRICK_TO_IT
+      - FLAG_5=FLAG-ALL_YOUR_SHIPS_ARE_BELONG_TO_US
+    ports:
+      - 12345:5000
+
+  # WEB
+  web_cookies:
+    build:
+      context: "./web/cookies"
+    restart: "unless-stopped"
+    ports:
+      - 10000:80
+
+  web_sqli1:
+    build:
+      context: "./web/sqli1"
+    restart: "unless-stopped"
+    ports:
+      - 10001:80
+
+  web_sqli2:
+    build:
+      context: "./web/sqli2"
+    restart: "unless-stopped"
+    ports:
+      - 10002:80
+
+  web_sqli3:
+    build:
+      context: "./web/sqli3"
+    restart: "unless-stopped"
+    ports:
+      - 10003:80
+
+  web_sqli4:
+    build:
+      context: "./web/sqli4"
+    restart: "unless-stopped"
+    ports:
+      - 10004:80
+
+  web_sqli5:
+    build:
+      context: "./web/sqli5"
+    restart: "unless-stopped"
+    ports:
+      - 10005:80
+
+  web_sqli6:
+    build:
+      context: "./web/sqli6"
+    restart: "unless-stopped"
+    ports:
+      - 10006:80
+
+  web_sqli7:
+    build:
+      context: "./web/sqli7"
+    restart: "unless-stopped"
+    ports:
+      - 10007:80
+
+  web_sqli8:
+    build:
+      context: "./web/sqli8"
+    restart: "unless-stopped"
+    ports:
+      - 10008:80
+
+  web_sqli9:
+    build:
+      context: "./web/sqli9"
+    restart: "unless-stopped"
+    ports:
+      - 10009:80
+
+  web_timingattack:
+    build:
+      context: "./web/timingattack"
+    restart: "unless-stopped"
+    ports:
+      - 10010:80
+
+  web_pastagen:
+    build:
+      context: "./web/pastagen"
+    restart: unless-stopped
+    ports:
+      - "10011:80"
