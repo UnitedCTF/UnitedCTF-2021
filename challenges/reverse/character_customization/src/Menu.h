@@ -6,6 +6,8 @@
 
 
 class Menu {
+/// Code was taken from this post: https://codereview.stackexchange.com/questions/49614/text-based-adventure-game-with-too-many-conditional-statements
+
 public:
     Menu(const std::string &name, const std::string &prompt, const int& id,
          const std::vector<std::pair<std::string, std::string> > &choices
@@ -17,9 +19,9 @@ public:
     bool operator==(const std::string &name) const;
 private:
     static const std::string menuend;
-    std::string _name, _prompt;
     int _id;
-    std::vector<std::pair<std::string, std::string> > _choices;
+    std::string _name, _prompt;
+    std::vector<std::pair<std::string, std::string>> _choices;
 };
 
 

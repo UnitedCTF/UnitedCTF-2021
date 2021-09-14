@@ -1,7 +1,7 @@
-# Character Customization
+(# Character Customization
 
 > Category: Reverse<br>
-> Author: @Strix (Nawras M. A.)<br>
+> Author: [@StrixSC](https://github.com/StrixSC) (Nawras M. A.)<br>
 > Difficulty: Medium -> Hard
 
 ## Flag
