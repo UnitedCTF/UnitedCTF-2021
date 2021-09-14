@@ -11,4 +11,4 @@ services:
 
       - FLAG=FLAG-TOO_MANY_ERRORS_TOO_MANY_DETAILS
     ports: 
-      - 5000:5000
+      - 11111:5000
