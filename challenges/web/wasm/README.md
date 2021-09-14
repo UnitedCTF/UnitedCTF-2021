@@ -42,4 +42,4 @@ Production: docker-compose up
 Development: docker-compose -f docker-compose.dev.yml up
 ```
 
-(The challenge will be locally hosted at http://localhost:1337/).
+(The challenge will be locally hosted at http://localhost:6969/).

@@ -4,15 +4,15 @@ services:
   web:
     container_name: debug-wasm-prod
     ports:
-      - "1337:1337"
+      - "6969:6969"
     environment:
-      PORT: 1337
+      PORT: 6969
       ENVIRONMENT: "production"
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     healthcheck:
-      test: curl -f http://localhost:1337/healthcheck || false
-      interval: 30s
+      test: curl -f http://localhost:6969/healthcheck || false
+      interval: 60s
       timeout: 3s
