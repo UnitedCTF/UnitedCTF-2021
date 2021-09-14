@@ -1,5 +1,5 @@
 <?php
-// flag-08dfacc89843e423htaccessdanger
+// flag-08dfacc89843e423blacklistsaredangerous
 session_start();
 
 function blacklisted($filename) {

@@ -4,7 +4,7 @@
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-Pour ce quatrième défi, le concepteur du site web a remplacé son mécanisme de validation des extensions afin d'interdire tout fichier qui a un extension ".php" et les extensions similaires qui sont des script qui peuvent s'exécuter. Il pense que cela est plus efficace.
+Pour ce quatrième défi, le concepteur du site web a remplacé son mécanisme de validation des extensions afin d'interdire tout fichier qui a une extension ".php" et les extensions similaires qui sont des scripts qui peuvent s'exécuter. Il pense que cela est plus efficace.
 
 ## Setup
 
@@ -22,8 +22,8 @@ Dans un fichier `.htaccess`, téléverser:
 AddHandler application/x-httpd-php .png
 ```
 
-On pourra ensuite téléverser des fichier "PNG" qui, lorsque accédés, seront exécutés comme du PHP. 
+On pourra ensuite téléverser des fichiers "PNG" qui, lorsque accédés, seront exécutés comme du PHP. 
 
 On peut obtenir le flag:
 
-Flag: `flag-08dfacc89843e423htaccessdanger`
+Flag: `flag-08dfacc89843e423blacklistsaredangerous`

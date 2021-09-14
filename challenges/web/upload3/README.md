@@ -13,6 +13,6 @@ Requirements:
 
 # Writeup
 
-Vous devez téléverser un fichier avec la même procédure que dans dans `File upload vulnerability 2`, cependant, l'application vérifie l'extension du fichier. Cependant, l'extension peut être n'importe où dans le nom du fichier. On peut donc téléverser un fichier `index.jpg.php`.
+Vous devez téléverser un fichier avec la même procédure que dans `File upload vulnerability 2`, cependant, l'application vérifie l'extension du fichier. Par contre, l'extension peut être n'importe où dans le nom du fichier. On peut donc téléverser un fichier `index.jpg.php`.
 
 Flag: `flag-80643872d1740e1544606nevertrusttheuser`
