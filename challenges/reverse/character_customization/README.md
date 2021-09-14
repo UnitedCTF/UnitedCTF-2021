@@ -1,4 +1,4 @@
-(# Character Customization
+# Character Customization
 
 > Category: Reverse<br>
 > Author: [@StrixSC](https://github.com/StrixSC) (Nawras M. A.)<br>
