@@ -1,0 +1,6 @@
+node_modules
+README.md
+solve.py
+Dockerfile
+docker-compose.yml
+package-lock.json

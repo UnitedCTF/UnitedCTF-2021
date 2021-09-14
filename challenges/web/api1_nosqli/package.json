@@ -1,0 +1,27 @@
+{
+  "name": "Quotes-A-Day",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "docker": "docker-compose up --build --force-recreate --renew-anon-volumes"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.0",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.1.6",
+    "inspirational-quotes": "^1.0.8",
+    "swagger-jsdoc": "^6.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}
