@@ -4,9 +4,9 @@ services:
   web:
     container_name: web-esolang
     ports:
-      - "1337:1337"
+      - "1476:1476"
     environment:
-      PORT: 1337
+      PORT: 1476
       ENVIRONMENT: "development"
     build:
       context: .
