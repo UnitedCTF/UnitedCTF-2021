@@ -139,7 +139,7 @@ services:
       - MONGO_INITDB_DATABASE=api1
       - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_api1_nosqli_mongo:27017/api1?authSource=admin&readPreference=primary&directConnection=true&ssl=false
     ports:
-      - 10012:3000
+      - 3000:3000
     external_links:
       - web_api1_nosqli_mongo
     depends_on: 
