@@ -9,4 +9,3 @@ regex = r'^(?P<firstWord>\w+)(?P<followingWords>\.\w+)*(?P<extention>\+\w+)?@(?P
 # higherLevelDomains: Et avoir au moins 1 domaine de plus haut niveau (séparé par un . à chaque fois)
 
 msg = input()
-print(re.match(regex, msg))
