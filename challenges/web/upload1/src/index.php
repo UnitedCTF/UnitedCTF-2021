@@ -1,5 +1,5 @@
 <?php
-// flag-5f087c95fd24e2d8feef96nosecurity
+// flag-5f087c95fd24e2d8feef96nosecuritywhatsoever
 session_start();
 
 if (!isset($_SESSION["folder"])) {
@@ -85,7 +85,7 @@ if (!isset($_SESSION["folder"])) {
 		<h2>Upload now!</h2>
 		<form enctype="multipart/form-data" id="form" method="POST">
 			<br/>
-			<input type="file" id="upfile" name="upfile" hidden/>
+			<input type="file" accept=".png,.jpg,.gif" id="upfile" name="upfile" hidden/>
 			<label for="upfile">Choose File</label>
 			<span id="file-chosen">No file chosen</span>
 		</form>
@@ -99,9 +99,9 @@ if (isset($_FILES["upfile"])) {
 		unlink($file_path);
 	}
 
-	// Install file to personnal folder
+	// Install file to personal folder
 	$filename = $_FILES["upfile"]["name"];
-	if ($_FILES['upfile']['size'] > 128000) {
+	if ($_FILES['upfile']['size'] > 131072 || $_FILES['upfile']['error'] === UPLOAD_ERR_INI_SIZE) {
 		echo "Cannot upload files larger than 128KB.";
 	} else if (move_uploaded_file($_FILES['upfile']['tmp_name'], $_SESSION["folder"] . $filename)) {
 		echo "Your file got uploaded successfully.";
