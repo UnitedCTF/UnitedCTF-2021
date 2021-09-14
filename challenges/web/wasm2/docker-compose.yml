@@ -4,9 +4,9 @@ services:
   web:
     container_name: wasm-2-prod
     ports:
-      - "1337:1337"
+      - "9696:9696"
     environment:
-      PORT: 1337
+      PORT: 9696
       ENVIRONMENT: "production"
     build:
       context: .
@@ -14,5 +14,6 @@ services:
     restart: always
     healthcheck:
       test: curl -f http://localhost:1337/healthcheck || false
-      interval: 30s
+      interval: 60s
       timeout: 3s
+    entrypoint: ["npm", "run", "dev"]

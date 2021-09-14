@@ -4,18 +4,19 @@ services:
   web:
     container_name: wasm-2-dev
     ports:
-      - "1337:1337"
+      - "9696:9696"
     environment:
-      PORT: 1337
+      PORT: 9696
       ENVIRONMENT: "development"
     build:
       context: .
-      dockerfile: Dockerfiledev
+      dockerfile: Dockerfile
     restart: always
     healthcheck:
       test: curl -f http://localhost:1337/healthcheck || false
-      interval: 30s
+      interval: 60s
       timeout: 3s
+    entrypoint: ["npm", "start"]
     volumes:
       - ./src:/app/src
       - ./views:/app/views

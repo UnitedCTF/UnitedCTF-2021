@@ -2,7 +2,7 @@ import express from 'express';
 import fileUpload from 'express-fileupload';
 import fs from 'fs';
 
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || 9696;
 const FLAG = fs.readFileSync('./challenge/FLAG').toString();
 
 function random_string(len: number) {
