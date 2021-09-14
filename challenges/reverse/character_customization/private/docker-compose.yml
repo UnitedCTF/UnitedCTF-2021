@@ -3,8 +3,8 @@ services:
   server:
     build: .
     environment:
-        - SERVER_PORT=9001
+        - SERVER_PORT=9003
         - URL=0.0.0.0
         - PROGRAM_NAME=character_customization
     ports:
-      - 9001:9001
+      - 9003:9003

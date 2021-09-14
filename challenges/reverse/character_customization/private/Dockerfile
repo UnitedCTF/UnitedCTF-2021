@@ -6,6 +6,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-EXPOSE 9001
+EXPOSE 9003
 
 CMD ["python3", "server.py"]

@@ -53,12 +53,22 @@ docker-compose up --force-recreate --build --detach
   
 ## Difficulty
 
-The challenge itself is pretty standard once you have a general idea of how to program behaves, but solving it will take some time as the code is so heavily obfuscated. I initially wanted this to be an easy challenge, but it's probably more of a medium or hard challenge.
+The challenge itself is pretty standard once you have a general idea of how to program behaves, but solving it will take some time as the code is so heavily obfuscated and in general hard to read. I initially wanted this to be an easy challenge, but it's probably more of a medium or hard challenge.
 
 ## Writeup
-When running the program, the user will be prompted with a list of options to chose from in a menu:
+When running the program, the user will be prompted with a list of options to chose from in a menu.
 
-![[Pasted image 20210909140915.png]]
+```text
+Hello Gamer...
+Welcome to the character customization screen.
+Select which option you'd like to customize.
+1: Gender
+2: Head
+3: Face
+4: Body
+5: Equipment
+6: Quit
+```
 
 This is a fairly standard reverse engineering challenge that focuses on static analysis (with a little bit of optional dynamic analysis). The flag can be obtained by selecting the options in a specific order that is hardcoded in the program.
 
@@ -67,8 +77,6 @@ The difficulty is with the obfuscation and the sheer amount of source code to go
 Each option has a selection id. When an option is selected, the id is stored in a vector. In the end, the selected ids in the vector are compared to a list of ids. If they match, the flag is outputted. 
 
 This challenge can be solved with any basic decompiler. Since the program is not stripped, it is easy to find the `flag.txt`, which we'll understand gets outputted if the `checkIfOverpowered()` function returns true.
-
-![[Pasted image 20210909131458.png]]
 
 We can find the `flag.txt` mention in the program's listing and match it up with the address found in the `ifstream` operator on the decompiled code.
 
@@ -256,10 +264,22 @@ At this point, we know what we need to get the flag, all we need is to map these
 
 The thing to note, is that each menu selection is lead by a local variable initialized to the respective id of the selection, that is then used to create the `Menu()` object for each respective menus. This is by far the hardest thing to understand in the challenge, because it requires the understanding of the program's behaviour and design.
 
-![[Pasted image 20210909201022.png]]
+```c++
+                    /* try { // try from 004029d0 to 004029d4 has its CatchHandler @ 004072f2 */
+  local_2bd8 = 2;
+  std::allocator<char>::allocator();
+                    /* try { // try from 00402a09 to 00402a0d has its CatchHandler @ 004072cb */
+  std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string
+            ((char *)local_2868,(allocator *)"Select gender.\n");
+  std::allocator<char>::allocator();
+                    /* try { // try from 00402a38 to 00402a3c has its CatchHandler @ 004072a4 */
+  std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string
+            ((char *)local_2888,(allocator *)"customize_gender");
+                    /* try { // try from 00402a6a to 00402a6e has its CatchHandler @ 0040728c */
+  Menu::Menu(aMStack4640,local_2888,local_2868,&local_2bd8,local_2a88);
+```
 
-In the previous screenshot, we can see `local_2bd8` initialized at 2, as well as `local_2888` corresponding to the `customize_gender` selection. Both of these local variables are then used to initalize the `Menu` instance 
-In the previous picture, we see a local variable initialized at 2 corresponding to the `customize_gender` selection, as well as `select_male` corresponding to 3 and `select_female` at 4. 
+Above, we can see `local_2bd8` initialized at 2, as well as `local_2888` corresponding to the `customize_gender` selection. Both of these local variables are then used to initalize a `Menu` object.
 
 We can then match each id in the final vector with the ids that we previously found: 
 
@@ -282,7 +302,7 @@ We can then match each id in the final vector with the ids that we previously fo
 
 Inputing these in the correct order will output the following sequence:
 
-```
+```bash
 Your character is too overpowered to continue.
 FLAG-REVERSING_IS_FUN_19as8933
 ```
