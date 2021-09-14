@@ -1,3 +1,5 @@
 # HackerTools - PrivEsc
 
-There are a few weird scripts on the system. Maybe you can break them?
+There are weird permissions on the system. Can you privilege escalation to `super_k1dd13`?
+
+Note: The flag can be found in `/flags`.

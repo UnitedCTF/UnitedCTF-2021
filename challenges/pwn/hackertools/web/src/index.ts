@@ -10,7 +10,7 @@ const ADMIN_USER = {
     username: "k1dd13",
     password: "k1dd13_pr00f_passw0rd_1234"
 };
-const LOGIN_PATH = "/super_secret_login_do_look_plz";
+const LOGIN_PATH = "/super_secret_login_do_not_look_plz";
 const AUTH_TOKEN = "SUPER_SAFE_AUTH_TOKEN";
 const TEMP_FLAG = "CTF{PLACEHOLDER_FLAG}";
 
