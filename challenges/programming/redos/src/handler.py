@@ -54,11 +54,14 @@ class Handler (socketserver.StreamRequestHandler):
 		self.send_message(m)
 
 		r = self.rfile.readline().strip(b'\n\r')
-		self.get_action(r)()
+		try:
+			self.get_action(r)()
+		except Exception as e:
+			self.send_message(str(e))
+			self.serve()
 
 	def quit(self):
 		self.send_message('Bye bye 👋')
-		self.finish()
 
 	def chall1(self):
 		m = 'Selected Challenge 1, enter answer:'
@@ -112,9 +115,11 @@ class Handler (socketserver.StreamRequestHandler):
 		stdout = s.stdout.decode()
 
 		if (stderr := s.stderr.decode()):
-			m = 'Error while parsing regex!'
+			error_message = stderr.split('\n')[-2]
+			m = ('Error while parsing regex!', error_message)
 			self.send_message(m)
 			self.serve()
+			return
 
 		rule = re.compile(r'^Match step count: (\d+)$')
 		n = int(rule.match(stdout).group(1))
