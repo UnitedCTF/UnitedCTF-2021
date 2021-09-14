@@ -12,4 +12,4 @@ services:
       - SLEEP_TIME=0
       - FLAG=FLAG-SHOULD_HAVE_USED_ENC_THEN_MAC_INSTEAD
     ports: 
-      - 5000:5000
+      - 11112:5000
