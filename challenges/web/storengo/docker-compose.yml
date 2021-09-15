@@ -1,0 +1,14 @@
+version: "3.0"
+
+services:
+  app:
+    build: .
+    restart: "unless-stopped"
+    environment:
+      - FTP_PASV_MIN=5002
+      - FTP_PASV_MAX=5100
+      - FTP_PASV_IP=127.0.0.1
+      - FTP_PORT=5001
+      - HTTP_PORT=5000
+    ports:
+      - "5000-5100:5000-5100"
