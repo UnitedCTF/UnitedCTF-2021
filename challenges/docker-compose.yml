@@ -168,19 +168,70 @@ services:
     mem_limit: 256m
     environment:
       - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
-      - MONGO_INITDB_DATABASE=api1
-      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_api1_nosqli_mongo:27017/api1?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+      - MONGO_INITDB_DATABASE=db
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
     ports:
       - 3000:3000
     external_links:
-      - web_api1_nosqli_mongo
+      - web_apix_mongo
     depends_on:
-      - web_api1_nosqli_mongo
+      - web_apix_mongo
 
-  web_api1_nosqli_mongo:
+  web_api2_packagevulnerability:
+    build: "./web/api2_packagevulnerability"
+    restart: unless-stopped
+    cpus: 0.15
+    mem_limit: 256m
+    environment:
+      - MONGO_INITDB_DATABASE=db
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    ports:
+      - 9002:9002
+    external_links:
+      - web_apix_mongo
+    depends_on: 
+      - web_apix_mongo
+
+  web_apix_mongo:
     image: mongo
     restart: unless-stopped
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=46UeIA53nSKeeeryixbu
-      - MONGO_INITDB_DATABASE=api1
+      - MONGO_INITDB_DATABASE=db
+
+  web_upload1:
+    build:
+      context: "./web/upload1"
+    restart: "unless-stopped"
+    cpus: 0.15
+    mem_limit: 256m
+    ports:
+      - 10020:80
+
+  web_upload2:
+    build:
+      context: "./web/upload2"
+    restart: "unless-stopped"
+    cpus: 0.15
+    mem_limit: 256m
+    ports:
+      - 10021:80
+
+  web_upload3:
+    build:
+      context: "./web/upload3"
+    restart: "unless-stopped"
+    cpus: 0.15
+    mem_limit: 256m
+    ports:
+      - 10022:80
+
+  web_upload4:
+    build:
+      context: "./web/upload4"
+    restart: "unless-stopped"
+    cpus: 0.15
+    mem_limit: 256m
+    ports:
+      - 10023:80
