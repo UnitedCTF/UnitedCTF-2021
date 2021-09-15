@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Store'N'Go</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+      (() => {
+        function list() {
+          fetch("/api/files")
+            .then((result) => result.json())
+            .then((filenames) => {
+              if (filenames.length > 0)
+                document.getElementById("filetable").style.display = "inherit";
+
+              const files = document.getElementById("files");
+              files.innerHTML = "";
+
+              filenames.forEach((file) => {
+                const row = document.createElement("tr");
+
+                const name = document.createElement("td");
+                name.innerText = file;
+
+                const actions = document.createElement("td");
+
+                const download_button = document.createElement("input");
+                download_button.setAttribute("type", "button");
+                download_button.value = "DOWNLOAD";
+                download_button.onclick = () =>
+                  window.open(`/api/files/${file}`);
+                actions.appendChild(download_button);
+
+                const remove_button = document.createElement("input");
+                remove_button.setAttribute("type", "button");
+                remove_button.value = "DELETE";
+                remove_button.onclick = () => {
+                  fetch("/api/files/" + file, {
+                    method: "DELETE",
+                  }).then(() => row.remove());
+                };
+                actions.appendChild(remove_button);
+
+                row.appendChild(name);
+                row.appendChild(actions);
+
+                files.appendChild(row);
+              });
+            })
+            .catch(() => (window.location = "/"));
+        }
+
+        list();
+      })();
+    </script>
+  </head>
+  <body>
+    <form action="/api/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <input type="submit" />
+    </form>
+    <table id="filetable" style="display: none">
+      <thead>
+        <th>NAME</th>
+        <th>ACTIONS</th>
+      </thead>
+      <tbody id="files"></tbody>
+    </table>
+    <div>Copyright Store'N'Go &copy;1998-2019</div>
+  </body>
+</html>
