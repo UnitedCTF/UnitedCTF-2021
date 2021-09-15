@@ -18,7 +18,7 @@ The other is a zip file, that is password protected. \
 
 For those that don't want to use any "fancy" tools:
 - The [link to the pastebin](https://pastebin.com/TSiXFe1u) can simply be found in the strings of the file. 
-- The zip can be found simply by opening the image with winRAR, 7Zip, etc.
+- The zip can be found simply by opening the image with winRAR, 7Zip, etc (the title nagware is a hint that winRAR will be useful).
 
 <br>
 The contents of the pastebin, are simply the password of the zip, which when extracted reveal the flag.
