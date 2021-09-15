@@ -1,6 +1,6 @@
 # codedump writeup
 
-The static analysis could be challenging for the participants as the code has been written in assembly so decompilers like Ghidra doesn't give a good representation of C code equivalent. As you might guessed it, this writeup have been done using dynamic analysis with x32dbg debugger. Participants can use Ghidra in disassembly view to follow the code during dynamic analysis.
+The static analysis could be challenging for the participants as the code has been written in assembly so decompilers like Ghidra doesn't give a good representation of C code equivalent. As you might have guessed, this writeup has been done using dynamic analysis with x32dbg debugger. Participants can use Ghidra in disassembly view to follow the code during dynamic analysis.
 
 First the code is using a call$+4/pop getPc technique in order to retrieve the value of eip. When the value of eip is retrieved, the shellcode use it with the offset `0xE` to point somwhere in the code. The somewhere is where we have an encoded shellcode and so the later is decoded at runtime using the xor operator and the key `0xA9B4A1D7`.
 
@@ -25,7 +25,7 @@ Call to `URLDownloadA` : ![image_urldownload](https://user-images.githubusercont
 
 And so the Flag is : `FLAG-ImAnIndicatorOfCompromise`
 
-As the URLDownload won't be able to reach the URL, the shellcode will continue by calling the function `ExitProcess`.
+As the URLDownload function won't be able to reach the URL, the shellcode will continue by calling the function `ExitProcess`.
 
 ![image_exitprocess](https://user-images.githubusercontent.com/43150719/133358194-72f1f717-fa28-4830-9e54-9d314ab68790.png)
 
