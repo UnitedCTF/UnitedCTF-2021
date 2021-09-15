@@ -53,6 +53,45 @@ services:
       - 12345:5000
 
   # WEB
+  web_api1_nosqli:
+    build: "./web/api1_nosqli"
+    restart: unless-stopped
+    cpus: 0.15
+    mem_limit: 256m
+    environment:
+      - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
+      - MONGO_INITDB_DATABASE=db
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    ports:
+      - 3000:3000
+    external_links:
+      - web_apix_mongo
+    depends_on:
+      - web_apix_mongo
+
+  web_api2_packagevulnerability:
+    build: "./web/api2_packagevulnerability"
+    restart: unless-stopped
+    cpus: 0.15
+    mem_limit: 256m
+    environment:
+      - MONGO_INITDB_DATABASE=db
+      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
+    ports:
+      - 9002:9002
+    external_links:
+      - web_apix_mongo
+    depends_on: 
+      - web_apix_mongo
+
+  web_apix_mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=46UeIA53nSKeeeryixbu
+      - MONGO_INITDB_DATABASE=db
+
   web_cookies:
     build:
       context: "./web/cookies"
@@ -61,6 +100,15 @@ services:
     mem_limit: 256m
     ports:
       - 10000:80
+
+  web_pastagen:
+    build:
+      context: "./web/pastagen"
+    restart: unless-stopped
+    cpus: 0.15
+    mem_limit: 256m
+    ports:
+      - 10011:80
 
   web_sqli1:
     build:
@@ -143,6 +191,19 @@ services:
     ports:
       - 10009:80
 
+  web_storengo:
+    build: 
+      context: "./web/storengo"
+    restart: "unless-stopped"
+    environment:
+      - FTP_PASV_MIN=5002
+      - FTP_PASV_MAX=5100
+      - FTP_PASV_IP=127.0.0.1
+      - FTP_PORT=5001
+      - HTTP_PORT=5000
+    ports:
+      - "5000-5100:5000-5100"
+
   web_timingattack:
     build:
       context: "./web/timingattack"
@@ -151,54 +212,6 @@ services:
     mem_limit: 256m
     ports:
       - 10010:80
-
-  web_pastagen:
-    build:
-      context: "./web/pastagen"
-    restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
-    ports:
-      - 10011:80
-
-  web_api1_nosqli:
-    build: "./web/api1_nosqli"
-    restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
-    environment:
-      - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
-      - MONGO_INITDB_DATABASE=db
-      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
-    ports:
-      - 3000:3000
-    external_links:
-      - web_apix_mongo
-    depends_on:
-      - web_apix_mongo
-
-  web_api2_packagevulnerability:
-    build: "./web/api2_packagevulnerability"
-    restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
-    environment:
-      - MONGO_INITDB_DATABASE=db
-      - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
-    ports:
-      - 9002:9002
-    external_links:
-      - web_apix_mongo
-    depends_on: 
-      - web_apix_mongo
-
-  web_apix_mongo:
-    image: mongo
-    restart: unless-stopped
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=46UeIA53nSKeeeryixbu
-      - MONGO_INITDB_DATABASE=db
 
   web_upload1:
     build:
