@@ -17,6 +17,9 @@
           fetch("/api/files")
             .then((result) => result.json())
             .then((filenames) => {
+              if (filenames.length > 0)
+                document.getElementById("filetable").style.display = "inherit";
+
               const files = document.getElementById("files");
               files.innerHTML = "";
 
@@ -63,7 +66,7 @@
       <input type="file" name="file" />
       <input type="submit" />
     </form>
-    <table>
+    <table id="filetable" style="display: none">
       <thead>
         <th>NAME</th>
         <th>ACTIONS</th>

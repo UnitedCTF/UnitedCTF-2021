@@ -4,19 +4,21 @@ import * as connectRedis from "connect-redis";
 import * as redis from "redis";
 import * as multer from "multer";
 import * as fs from "fs";
+import * as path from "path";
 
 import { md5 } from "./utils/crypto";
+import { exists as redis_exists } from "./utils/redis";
 
 const app = express();
-const redisStore = connectRedis(session);
-const redisClient = redis.createClient({
+const rstore = connectRedis(session);
+const rclient = redis.createClient({
   host: "127.0.0.1",
   port: 6379,
 });
 
 app.use(
   session({
-    store: new redisStore({ client: redisClient, db: 1 }),
+    store: new rstore({ client: rclient, db: 1 }),
     secret: process.env.SECRET || "store'n'go",
     saveUninitialized: false,
     resave: false,
@@ -27,35 +29,43 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post(
   "/api/login",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (
-      !/^[A-z0-9]{8,32}$/.test(req.body.username) ||
-      !/^[A-z0-9]{8,32}$/.test(req.body.password)
-    ) {
-      res
-        .status(400)
-        .send("Both username and password must match /^[A-z0-9]{8,32}$/ regex");
-    } else {
-      const session = req.session as any;
-      redisClient.exists(`${session.hash}_admin`, (err, reply) => {
-        if (err) {
-          res.status(500).send(err.message);
-        } else {
-          const hash = !reply
-            ? md5(
-                `${req.body.username}_${req.body.password}_${process.env.SECRET}`
-              )
-            : "admin";
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    try {
+      if (
+        !/^[A-z0-9]{8,32}$/.test(req.body.username) ||
+        !/^[A-z0-9]{8,32}$/.test(req.body.password)
+      ) {
+        res
+          .status(400)
+          .send(
+            "Both username and password must match the /^[A-z0-9]{8,32}$/ regex"
+          );
+      } else {
+        const session = req.session as any;
+        session.hash = md5(
+          `${req.body.username}_${req.body.password}_${process.env.SECRET}`
+        );
 
-          session.hash = hash;
-          const path = `${__dirname}/userdata/${hash}`;
-          if (!fs.existsSync(path)) {
-            fs.mkdirSync(path);
-          }
+        const is_admin = await redis_exists(
+          rclient,
+          session.hash + "_admin"
+        );
+        if (is_admin) session.hash = "admin";
 
-          res.redirect("/upload.html");
+        const userpath = path.join(__dirname, "userdata", session.hash);
+        // I hate that there are no easy async exists
+        if (!fs.existsSync(userpath)) {
+          await fs.promises.mkdir(userpath);
         }
-      });
+
+        res.redirect("/upload.html");
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
@@ -63,7 +73,11 @@ app.post(
 app.post(
   "/api/logout",
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    req.session.destroy(() => res.redirect("/upload.html"));
+    try {
+      req.session.destroy(() => res.redirect("/"));
+    } catch (e) {
+      next(e);
+    }
   }
 );
 
@@ -77,33 +91,47 @@ const upload = multer({
 app.post(
   "/api/upload",
   upload.single("file"),
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const session = req.session as any;
-    if (!session.hash) {
-      res.status(403).send("please login");
-    } else {
-      const userpath = `${__dirname}/userdata/${session.hash}`;
-      fs.writeFileSync(
-        `${userpath}/${req.file.originalname.replace(/\.\./g, ".")}`,
-        req.file.buffer
-      );
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    try {
+      const session = req.session as any;
+      if (!session.hash) {
+        res.status(403).send("please login");
+      } else {
+        const userpath = path.join(__dirname, "userdata", session.hash);
+        await fs.promises.writeFile(
+          path.join(userpath, req.file.originalname.replace(/\.\./g, ".")),
+          req.file.buffer
+        );
 
-      res.redirect("/upload.html");
+        res.redirect("/upload.html");
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
 
 app.get(
   "/api/files",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const session = req.session as any;
-    if (!session.hash) {
-      res.status(403).send("please login");
-    } else {
-      const userpath = `${__dirname}/userdata/${session.hash}`;
-      fs.readdir(userpath, (err, files) =>
-        err ? res.status(500).send(err.message) : res.json(files)
-      );
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    try {
+      const session = req.session as any;
+      if (!session.hash) {
+        res.status(403).send("please login");
+      } else {
+        const userpath = path.join(__dirname, "userdata", session.hash);
+        res.json(await fs.promises.readdir(userpath));
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
@@ -111,40 +139,67 @@ app.get(
 app.get(
   "/api/files/:filename",
   (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const session = req.session as any;
-    if (!session.hash) {
-      res.status(403).send("please login");
-    } else {
-      const userpath = `${__dirname}/userdata/${session.hash}`;
-      res.sendFile(`${userpath}/${req.params.filename.replace(/\.\./g, ".")}`);
+    try {
+      const session = req.session as any;
+      if (!session.hash) {
+        res.status(403).send("please login");
+      } else {
+        const userpath = path.join(__dirname, "userdata", session.hash);
+        res.sendFile(
+          path.join(userpath, req.params.filename.replace(/\.\./g, "."))
+        );
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
 
 app.delete(
   "/api/files/:filename",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const session = req.session as any;
-    if (!session.hash) {
-      res.status(403).send("please login");
-    } else {
-      const userpath = `${__dirname}/userdata/${session.hash}`;
-      fs.unlinkSync(`${userpath}/${req.params.filename.replace(/\.\./g, ".")}`);
-      res.status(204).send();
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    try {
+      const session = req.session as any;
+      if (!session.hash) {
+        res.status(403).send("please login");
+      } else {
+        const userpath = path.join(__dirname, "userdata", session.hash);
+        await fs.promises.unlink(
+          path.join(userpath, req.params.filename.replace(/\.\./g, "."))
+        );
+        res.status(204).send();
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
 
 app.get(
   "/api/is_admin",
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const session = req.session as any;
-    if (!session.hash) {
-      res.status(403).send("please login");
-    } else {
-      redisClient.exists(`${session.hash}_admin`, (err, reply) =>
-        err ? res.status(500).send(err.message) : res.json(!!reply)
-      );
+  async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    try {
+      const session = req.session as any;
+      if (!session.hash) {
+        res.status(403).send("please login");
+      } else {
+        res.json({
+          [session.hash]: await redis_exists(
+            rclient,
+            session.hash + "_admin"
+          ),
+        });
+      }
+    } catch (e) {
+      next(e);
     }
   }
 );
@@ -160,8 +215,6 @@ app.use(function (
   res.status(500).send(err.message);
 });
 
-(async () => {
-  app.listen(Number(process.env.HTTP_PORT || 5000), () =>
-    console.log("http server listening on", process.env.HTTP_PORT || 5000)
-  );
-})();
+app.listen(Number(process.env.HTTP_PORT || 5000), () =>
+  console.log("http server listening on", process.env.HTTP_PORT || 5000)
+);

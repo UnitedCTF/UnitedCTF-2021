@@ -12,7 +12,7 @@ Old challenge never solved, was a 0day at the time, but now it has a CVE-2020-15
 Using the same credentials (eg: `rootroot:rootroot`)
 
 1. Login on the FTP server with a ftp client
-2. Try downloading a file name `test`, you will see an error with the path which contains your `hash`
+2. Try downloading a file name `test`, you will see an error with the path which contains your `hash` or call the `/api/is_admin`
 3. Create a file named `set YOUR_HASH_admin 1` (replace YOUR_HASH) on your computer
 4. Upload the file on the FTP server with `put "set YOUR_HASH_admin 1"`
 5. Login back on the FTP server with telnet and enter these commands (this basicly send the dirlist to the redis server which will interpret it as commands)
