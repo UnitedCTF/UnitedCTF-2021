@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="favicon.png" />
     <link
-      href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas&display=swap"
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -26,15 +26,15 @@
                 const name = document.createElement("td");
                 name.innerText = file;
 
-                const download = document.createElement("td");
+                const actions = document.createElement("td");
+
                 const download_button = document.createElement("input");
                 download_button.setAttribute("type", "button");
                 download_button.value = "DOWNLOAD";
                 download_button.onclick = () =>
                   window.open(`/api/files/${file}`);
-                download.appendChild(download_button);
+                actions.appendChild(download_button);
 
-                const remove = document.createElement("td");
                 const remove_button = document.createElement("input");
                 remove_button.setAttribute("type", "button");
                 remove_button.value = "DELETE";
@@ -43,11 +43,10 @@
                     method: "DELETE",
                   }).then(() => row.remove());
                 };
-                remove.appendChild(remove_button);
+                actions.appendChild(remove_button);
 
                 row.appendChild(name);
-                row.appendChild(download);
-                row.appendChild(remove);
+                row.appendChild(actions);
 
                 files.appendChild(row);
               });
@@ -67,10 +66,10 @@
     <table>
       <thead>
         <th>NAME</th>
-        <th>DOWNLOAD</th>
-        <th>DELETE</th>
+        <th>ACTIONS</th>
       </thead>
       <tbody id="files"></tbody>
     </table>
+    <div>Copyright Store'N'Go &copy;1998-2019</div>
   </body>
 </html>
