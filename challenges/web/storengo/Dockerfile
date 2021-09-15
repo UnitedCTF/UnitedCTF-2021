@@ -12,8 +12,8 @@ RUN npm install
 COPY ./src /app/src
 RUN npm run build
 
-WORKDIR /app/out
-RUN zip -r static/source.zip . -x package.json -x package-lock.json
+WORKDIR /app/src
+RUN zip -r ../out/static/source.zip .
 
 FROM node:fermium
 
