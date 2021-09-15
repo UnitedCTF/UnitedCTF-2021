@@ -185,7 +185,7 @@ mongo.MongoClient.connect(process.env.MONGO_URL)
          *              password: demo
          *     responses:
          *       200:
-         *         description: The book was successfully created
+         *         description: The key was successfully created
          *         content:
          *           application/json:
          *             schema:
@@ -207,7 +207,7 @@ mongo.MongoClient.connect(process.env.MONGO_URL)
         app.post('/api_key', async (req, res) => {
             await new Promise(r => setTimeout(r, 200));
             if (!req.body.email || !req.body.password) {
-                return res.status(400).send("Invalid body");
+                return res.status(400).send({"message": "Invalid body"});
             }
 
             db.collection('users').findOne({
