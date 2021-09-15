@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">
-                        <textarea class="form-control" style="height: 7em; resize: none;" readonly><%= Buffer.from(program.program, 'base64') %></textarea>
+                        <textarea class="form-control" style="height: 7em; resize: none; overflow: hidden; white-space: pre; overflow-wrap: normal;" readonly><%= Buffer.from(program.program, 'base64') %></textarea>
                     </div>
                     <div class="col-10">
                         <b><%= program.name %></b>

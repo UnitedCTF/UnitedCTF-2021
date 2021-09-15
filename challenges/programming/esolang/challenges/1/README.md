@@ -13,3 +13,5 @@ Here is a glimpse of what people think of CTFLang:
 ```
 
 Hopefully, this won't discourage you. It does make for a good `flag` though!
+
+Note: Flag is not in the standard `CTF{...}` format.

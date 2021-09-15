@@ -32,6 +32,16 @@ function testCode(code: string, input: string): boolean {
     return interpreter.output.split("").reverse().join("") === input.substring(0, input.length - 1);
 }
 
+function randomString(length: number): string {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const charactersLength = chars.length;
+    let result = "";
+
+    for(let i = 0; i < length; i++) result += chars.charAt(Math.floor(Math.random() * charactersLength));
+
+    return result;
+}
+
 app.get('/challenge', (req, res) => {
     let code = "";
     let solution = "";
@@ -39,10 +49,10 @@ app.get('/challenge', (req, res) => {
         code = req.query.code as string;
 
         try {
-            if(testCode(code, "ABC0")) {
+            if(testCode(code, randomString(16) + "0")) {
                 solution = fs.readFileSync("./challenges/3/FLAG").toString();
             } else {
-                solution = "The program is not a solution.";
+                solution = "The supplied program is not a solution.";
             }
         } catch(e) {
             solution = `The program failed: ${e}`;
@@ -64,9 +74,24 @@ function loadCTF(file: string): string {
 app.get('/gallery', (req, res) => {
     res.render('gallery', { programs: [
         {
+            "name": "Challenge",
+            "description": "Program for debugging challenge.",
+            "program": loadCTF("./challenges/2/challenge.ctf")
+        },
+        {
             "name": "Alphabet",
             "description": "Program to display the whole alphabet.",
             "program": loadCTF("./tests/alphabet.ctf")
+        },
+        {
+            "name": "Delay",
+            "description": "Program to slow down an \"@\".",
+            "program": loadCTF("./tests/delay.ctf")
+        },
+        {
+            "name": "Generator",
+            "description": "Program to generate \"@\"s forever.",
+            "program": loadCTF("./tests/generator.ctf")
         },
         {
             "name": "Hello World",
@@ -84,10 +109,10 @@ app.get('/gallery', (req, res) => {
             "program": loadCTF("./tests/meta.ctf")
         },
         {
-            "name": "Challenge",
-            "description": "Program for debugging challenge.",
-            "program": loadCTF("./challenges/2/challenge.ctf")
-        }
+            "name": "One",
+            "description": "Program that takes one \"@\" from many.",
+            "program": loadCTF("./tests/one.ctf")
+        },
     ]});
 });
 
