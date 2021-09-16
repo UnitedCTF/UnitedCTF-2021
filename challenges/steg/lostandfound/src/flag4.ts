@@ -10,16 +10,18 @@ import * as fs from "fs/promises";
   const [SRC, DST] = process.argv.slice(2);
   const data = await fs.readFile(SRC);
 
-  // erase the IDAT checksums
+  // erase the IDAT checksums AND length
   for (let i = 8; i < data.length; ) {
     const length = data.slice(i, (i += 4)).readUInt32BE(0);
     const header = data.slice(i, (i += 4)).toString();
-    i += length + 4; // skip checksum
     if (header === "IDAT") {
-      for (let j = i - 4; j < i; ++j) {
-        data[j] = 0;
-      }
-    }
+      // erase length
+      data.writeUInt32BE(0, i - 8);
+      // erase checksum
+      data.writeUInt32BE(0, i + length);
+    } 
+
+    i += length + 4;
   }
 
   await fs.writeFile(DST, data);
