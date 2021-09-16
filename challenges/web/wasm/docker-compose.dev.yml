@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  web:
+    container_name: debug-wasm-dev
+    ports:
+      - "6969:6969"
+    environment:
+      PORT: 6969
+      ENVIRONMENT: "development"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    healthcheck:
+      test: curl -f http://localhost:6969/healthcheck || false
+      interval: 60s
+      timeout: 3s
+    volumes:
+      - ./wasm:/app/wasm
+      - ./web:/app/web
+      - ./challenge:/app/challenge

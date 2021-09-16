@@ -1,0 +1,6 @@
+.dockerignore
+.gitignore
+.venv
+.vscode
+Dockerfile
+docker-compose*

@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  web:
+    container_name: web-esolang
+    ports:
+      - "1476:1476"
+    environment:
+      PORT: 1476
+      ENVIRONMENT: "production"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    entrypoint: ["npm", "start"]

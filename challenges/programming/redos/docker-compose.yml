@@ -1,0 +1,10 @@
+version: "3.0"
+
+services:
+  app:
+    build:
+      context: "."
+    ports: 
+      - "31337:31337"
+    tty: true
+    command: python3 ./launch_server.py

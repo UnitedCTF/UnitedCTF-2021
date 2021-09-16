@@ -1,0 +1,33 @@
+{
+  "name": "vaxinull",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/express.ts",
+    "dev": "ts-node-dev ./src/express.ts",
+    "writeup": "ts-node ./writeups/writeup.ts",
+    "tsci": "tsc --init"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/elliptic": "^6.4.13",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.10",
+    "@types/qrcode": "^1.4.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ejs": "^3.1.6",
+    "elliptic": "^6.5.4",
+    "express": "^4.17.1",
+    "hash.js": "^1.1.7",
+    "jimp": "^0.16.1",
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.4.4",
+    "qs": "^6.10.1"
+  }
+}

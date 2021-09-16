@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Run WASM</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <style>
+            .gif {
+                width: 500px;
+            }
+            .container {
+                display: grid; 
+                height: 100vh; 
+                align-content: center; 
+                justify-content: center; 
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img class="gif" src="<%= gif %>"/>
+            <h2 class="title"><%= title %></h2>
+            <span class="text"><%= text %></span>
+            <br/>
+
+            <form action="." method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file" accept="application/wasm">
+                <br/><br/>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+    </body>
+</html>

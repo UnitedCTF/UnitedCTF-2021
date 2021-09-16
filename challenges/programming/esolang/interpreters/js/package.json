@@ -1,0 +1,28 @@
+{
+  "name": "ctflang",
+  "version": "1.0.0",
+  "description": "Interpreter for CTFLang",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/node.ts",
+    "dev": "ts-node-dev ./src/node.ts",
+    "tsci": "tsc --init",
+    "webpack": "webpack"
+  },
+  "author": "Alexandre Lavoie",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/argparse": "^2.0.10",
+    "@types/node": "^16.6.1",
+    "@types/readline-sync": "^1.4.4",
+    "ts-loader": "^9.2.5",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "readline-sync": "^1.4.10"
+  }
+}

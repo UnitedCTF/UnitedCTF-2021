@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>HackerTools | Tools</title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            .card {
+                margin: 0 10em;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/appnav.ejs') %>
+        <br/>
+        <% tools.forEach(tool => { %>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <b><%= tool.name %></b>
+                    <br/><br/>
+                    <p><%= tool.description %></p>
+                    <a href="/app/tools/<%= tool.id %>" class="stretched-link">View</a>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <% }) %>
+    </body>
+</html>

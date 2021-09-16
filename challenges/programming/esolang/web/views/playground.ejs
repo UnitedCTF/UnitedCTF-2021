@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>CTFLang | Playground</title>
+        <%- include('../partials/base-head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            input, textarea {
+                font-family: monospace;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+
+        <br/>
+
+        <div class="container" style="max-width: 100%;">
+            <div class="row" style="height: 90vh">
+                <div class="col-8">
+                    <textarea id="code" class="form-control" style="height: 100%; resize: none;"><%= code %></textarea>
+                </div>
+                <div class="col-4">
+                    <div class="btn-group" style="width: 100%">
+                        <button type="button" onclick="handlePlayground(event)" class="btn btn-primary bi-play-fill"></button>
+                    </div>
+                    <br/><br/>
+                    <label for="input">Input:</label>
+                    <input id="input" class="form-control" type="text" value="<%= input %>"></input>
+                    <br/>
+                    <label for="delay">Delay (ms):</label>
+                    <input id="delay" class="form-control" value="100" type="number"></input>
+                    <br/>
+                    <label for="output">Output:</label>
+                    <input id="output" class="form-control" type="text" readonly></input>
+                    <br/>
+                    <label for="stacks">Stacks:</label>
+                    <textarea id="stacks" class="form-control" style="height: 300px" readonly></textarea>
+                </div>
+            </div>
+        </div>        
+
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>

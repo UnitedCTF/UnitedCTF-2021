@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>VaxiNull | QR</title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            p {
+                margin: 0 10em;
+                text-align: justify;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <br/>
+        <p>We provide a simple and lightweight QR code for validation. It is built off of the SHC standard (which uses JWT and JWS). We are still working on an app to read/validate the QR code. </p>
+        <br/>
+        <center><img alt="qrcode" src="<%= qrcode %>"/></center>
+    </body>
+</html>
