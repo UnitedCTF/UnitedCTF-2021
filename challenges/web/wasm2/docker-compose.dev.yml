@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  web:
+    container_name: wasm-2-dev
+    ports:
+      - "9696:9696"
+    environment:
+      PORT: 9696
+      ENVIRONMENT: "development"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    healthcheck:
+      test: curl -f http://localhost:1337/healthcheck || false
+      interval: 60s
+      timeout: 3s
+    entrypoint: ["npm", "start"]
+    volumes:
+      - ./src:/app/src
+      - ./views:/app/views
+      - ./public:/app/public
