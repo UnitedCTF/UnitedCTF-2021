@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>VaxiNull | <%= title %></title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            .prompt, form {
+                margin: 0 10em;
+                text-align: justify;
+            }
+
+            .alert {
+                margin: 0 10em;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <br/>
+        <p class="prompt"><%- prompt %></p>
+        <br/>
+        <form method="POST" action="">
+            <input class="form-control" name="shc" id="shc" placeholder="shc:/"/>
+            <br />
+            <input class="form-control btn btn-primary" type="submit"/>
+        </form>
+        <br/>
+        <% if(locals.msg && locals.type) { %>
+        <% if(type === 'success') { %>
+        <div class="alert alert-success" role="alert">
+            <b>Certified by VaxiNull</b>
+            <hr>
+            <p class="mb-0"><%= msg %></p>
+        </div>
+        <% } else if(type === 'error') { %>
+        <div class="alert alert-danger" role="alert">
+            <b>Error</b>
+            <hr>
+            <p class="mb-0"><%= msg %></p>
+        </div>
+        <% }} %>
+    </body>
+</html>
