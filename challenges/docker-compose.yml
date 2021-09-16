@@ -6,8 +6,8 @@ services:
     build:
       context: "./crypto/paddingoracle"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - NODE_ENV=production
       - PORT=5000
@@ -20,8 +20,8 @@ services:
     build:
       context: "./crypto/blindpaddingoracle"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - NODE_ENV=production
       - PORT=5000
@@ -33,11 +33,11 @@ services:
       - 11112:5000
 
   crypto_vaxinull:
-    build: 
+    build:
       context: "./crypto/vaxinull"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       PORT: 4200
       ENVIRONMENT: "production"
@@ -50,8 +50,8 @@ services:
     build:
       context: "./programming/battleship"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - NODE_ENV=production
       - VERSION=0.0.2
@@ -69,8 +69,8 @@ services:
     build:
       context: "./programming/esolang"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       PORT: 1476
       ENVIRONMENT: "production"
@@ -81,18 +81,33 @@ services:
   programming_redos:
     build:
       context: "./programming/redos"
-    cpus: 0.15
-    mem_limit: 256m
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
     command: python3 ./launch_server.py
-    ports: 
+    ports:
       - 31337:31337
+
+  # REVERSE
+  reverse_character_customization:
+    build:
+      context: "./reverse/character_customization/private"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    environment:
+      - SERVER_PORT=9003
+      - URL=0.0.0.0
+      - PROGRAM_NAME=character_customization
+    ports:
+      - 9003:9003
 
   # WEB
   web_api1_nosqli:
     build: "./web/api1_nosqli"
     restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - FLAG=FLAG-No5QL_D0ESNT_M3AN_N0_SQLi
       - MONGO_INITDB_DATABASE=db
@@ -107,8 +122,8 @@ services:
   web_api2_packagevulnerability:
     build: "./web/api2_packagevulnerability"
     restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - MONGO_INITDB_DATABASE=db
       - MONGO_URL=mongodb://admin:46UeIA53nSKeeeryixbu@web_apix_mongo:27017/db?authSource=admin&readPreference=primary&directConnection=true&ssl=false
@@ -116,7 +131,7 @@ services:
       - 9002:9002
     external_links:
       - web_apix_mongo
-    depends_on: 
+    depends_on:
       - web_apix_mongo
 
   web_apix_mongo:
@@ -131,17 +146,30 @@ services:
     build:
       context: "./web/cookies"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10000:80
+
+  web_hackertools:
+    build:
+      context: "./web/hackertools"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    environment:
+      PORT: 1337
+      ENVIRONMENT: "production"
+    entrypoint: ["npm", "start"]
+    ports:
+      - 1337:1337
 
   web_pastagen:
     build:
       context: "./web/pastagen"
     restart: unless-stopped
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10011:80
 
@@ -149,8 +177,8 @@ services:
     build:
       context: "./web/sqli1"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10001:80
 
@@ -158,8 +186,8 @@ services:
     build:
       context: "./web/sqli2"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10002:80
 
@@ -167,8 +195,8 @@ services:
     build:
       context: "./web/sqli3"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10003:80
 
@@ -176,8 +204,8 @@ services:
     build:
       context: "./web/sqli4"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10004:80
 
@@ -185,8 +213,8 @@ services:
     build:
       context: "./web/sqli5"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10005:80
 
@@ -194,8 +222,8 @@ services:
     build:
       context: "./web/sqli6"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10006:80
 
@@ -203,8 +231,8 @@ services:
     build:
       context: "./web/sqli7"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10007:80
 
@@ -212,8 +240,8 @@ services:
     build:
       context: "./web/sqli8"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10008:80
 
@@ -221,15 +249,17 @@ services:
     build:
       context: "./web/sqli9"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10009:80
 
   web_storengo:
-    build: 
+    build:
       context: "./web/storengo"
     restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       - FTP_PASV_MIN=5002
       - FTP_PASV_MAX=5100
@@ -243,8 +273,8 @@ services:
     build:
       context: "./web/timingattack"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10010:80
 
@@ -252,8 +282,8 @@ services:
     build:
       context: "./web/upload1"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10020:80
 
@@ -261,8 +291,8 @@ services:
     build:
       context: "./web/upload2"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10021:80
 
@@ -270,8 +300,8 @@ services:
     build:
       context: "./web/upload3"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10022:80
 
@@ -279,8 +309,8 @@ services:
     build:
       context: "./web/upload4"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     ports:
       - 10023:80
 
@@ -288,8 +318,8 @@ services:
     build:
       context: "./web/wasm"
     restart: "unless-stopped"
-    cpus: 0.15
-    mem_limit: 256m
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       PORT: 6969
       ENVIRONMENT: "production"
@@ -304,6 +334,8 @@ services:
     build:
       context: "./web/wasm2"
     restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
     environment:
       PORT: 9696
       ENVIRONMENT: "production"
