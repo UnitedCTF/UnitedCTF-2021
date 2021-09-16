@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>HackerTools | Login</title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            .container {
+                display: grid;
+                height: 100%;
+                justify-content: center;
+                align-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <% if(locals.alert) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= alert %>
+            </div>
+            <% } %>
+
+            <form method="POST" action="" class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center; font-weight: bold;">HackerTools</h5>
+                    <br/>
+                    <input class="form-control" name="username" id="username" placeholder="Username"/>
+                    <br/>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"/>
+                    <br/>
+                    <input type="submit" class="btn btn-primary form-control" value="Login"/>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

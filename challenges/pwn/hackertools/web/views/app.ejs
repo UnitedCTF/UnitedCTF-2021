@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>HackerTools | App</title>
+        <%- include('../partials/head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            h1, h3 {
+                text-align: center;
+            }
+
+            .img-container {
+                display: grid;
+                width: 100%;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/appnav.ejs') %>
+        <br/>
+        <h1>Welcome Back K1DD13!</h1>
+        <h3><%= flag %></h3>
+        <br/><br/>
+        <div class="img-container">
+            <img alt="K1DD13" src="/k1dd13.gif"/>
+        </div>
+    </body>
+</html>
