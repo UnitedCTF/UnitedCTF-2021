@@ -118,7 +118,7 @@ function shuffle(array: any[]): any[] {
     const path = process.argv.slice(5).map(Number);
     const stop = path.length + 1;
     (async function reorder_idat(path: number[], idat_chunks: Buffer[][]) {
-      if (path.length === stop) {
+      if (path.length === stop || path.length > idat_chunks.length) {
         console.log("possible", path.join("-"));
         await fs.writeFile(
           DST + path.join("-") + ".png",
@@ -128,6 +128,7 @@ function shuffle(array: any[]): any[] {
             ...fc,
             ...path
               .map((i) => idat_chunks[i])
+              .filter((s) => !!s)
               .reduce((a, b) => [...a, ...b], []),
             ...lc,
             ...iend,
