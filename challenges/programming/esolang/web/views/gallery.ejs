@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>CTFLang | Gallery</title>
+        <%- include('../partials/base-head.ejs') %>
+        <%- include('../partials/bootstrap.ejs') %>
+        <style>
+            .card {
+                margin: 0 10em;
+            }
+            input, textarea {
+                font-family: monospace;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+        <br/>
+        <% programs.forEach(function(program) {%>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <textarea class="form-control" style="height: 7em; resize: none; overflow: hidden; white-space: pre; overflow-wrap: normal;" readonly><%= Buffer.from(program.program, 'base64') %></textarea>
+                    </div>
+                    <div class="col-10">
+                        <b><%= program.name %></b>
+                        <br/><br/>
+                        <p><%= program.description %></p>
+                        <a href="/playground?code=<%= program.program %>" class="stretched-link">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <% }); %>
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>
