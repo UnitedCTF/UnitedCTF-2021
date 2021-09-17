@@ -88,6 +88,16 @@ services:
     ports:
       - 31337:31337
 
+  # PWN
+  pwn_simple_notes:
+    build:
+      context: "./pwn/simple_notes"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    ports:
+     - 1234:9999
+
   # REVERSE
   reverse_character_customization:
     build:
