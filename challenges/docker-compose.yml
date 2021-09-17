@@ -180,7 +180,7 @@ services:
     cpus: 0.25
     mem_limit: 512m
     ports:
-      - 10001:80
+      - 9998:80
 
   web_sqli2:
     build:
@@ -189,7 +189,7 @@ services:
     cpus: 0.25
     mem_limit: 512m
     ports:
-      - 10002:80
+      - 9999:80
 
   web_sqli3:
     build:
