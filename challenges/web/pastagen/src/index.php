@@ -44,7 +44,7 @@
       $files = scandir("./pastas");
       $selected = isset($_GET["pasta"]) ? $_GET["pasta"] : "";
       for ($i = 2; $i < count($files); $i++) {
-        echo "<option value='./pastas/" . $files[$i] . "'" . ($selected == $files[$i] ? "selected" : "") . ">";
+        echo "<option value='./pastas/" . $files[$i] . "'" . ($selected == "./pastas/".$files[$i] ? "selected" : "") . ">";
         echo substr($files[$i], 0, -4);
         echo "</option>";
       }
