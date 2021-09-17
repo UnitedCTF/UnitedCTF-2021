@@ -314,6 +314,15 @@ services:
     ports:
       - 10023:80
 
+  web_plusbassoumissionnaire:
+    build:
+      context: "./web/plusbassoumissionnaire"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    ports:
+      - 10025:80
+
   web_wasm1:
     build:
       context: "./web/wasm"
