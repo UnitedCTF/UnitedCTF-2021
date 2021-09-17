@@ -359,7 +359,7 @@ services:
       PORT: 9696
       ENVIRONMENT: "production"
     healthcheck:
-      test: curl -f http://localhost:1337/healthcheck || false
+      test: curl -f http://localhost:9696/healthcheck || false
       interval: 60s
       timeout: 3s
     entrypoint: ["npm", "run", "dev"]
