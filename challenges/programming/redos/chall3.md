@@ -12,7 +12,7 @@ Anyway, we extracted the c++ one and sent it to you. Good luck!
 ## WriteUp
 
 The redos is a bit harder to find on this one, it's `(?(lib)[A-z =]*|[0-9])+`.\
-To abuse it, the group named **lib** must exist and then it's easy as spamming letters, spaces and equals then ending the string with something that won't match (in my case, a letter)\
+To abuse it, the group named **lib** must exist and then it's easy as spamming letters, spaces and equals then ending the string with something that won't match (in my case, a number)\
 The **import_statement** has absolutely no use at all.\
 The **lib** must be an *m* followed by any lowercase letter followed by *lloc*. One could technically write `mzlloc`.
 
