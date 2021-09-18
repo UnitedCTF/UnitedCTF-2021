@@ -54,8 +54,12 @@
   </form>
   <?php
   if (isset($_GET["pasta"]) && $_GET["pasta"]) {
+    // avoid an infinite loop
+    $pasta = $_GET["pasta"];
+    $_GET["pasta"] = null;
+
     echo "<pre>";
-    include($_GET["pasta"]);
+    include($pasta);
     echo "</pre>";
   }
   ?>
