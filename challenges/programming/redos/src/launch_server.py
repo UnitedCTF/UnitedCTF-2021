@@ -13,7 +13,7 @@ def json_serial(obj):
     raise TypeError(f'Type {type(obj)} not serializable')
 
 # Implement your custom code here
-class CustomTCPServer(socketserver.TCPServer):
+class CustomTCPServer(socketserver.ThreadingTCPServer):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
