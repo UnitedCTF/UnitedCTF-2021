@@ -1,7 +1,7 @@
 # 4. The Real Challenge
 
 You've done it! You may be our only chance of success. \
-Our target is a major service company, the less you know the better thrust me. They're doing millions of regex validations per day and all we need is a few seconds of downtime.
+Our target is a major service company, the less you know the better trust me. They're doing millions of regex validations per day and all we need is a few seconds of downtime.
 
 They've got a decent protection so a dumb DDoS won't cut it but a decent REDoS mixed with a distributed attack might be what we're looking for. \
 Anyway, here's the threshold we estimated and the leaked regex file as usual.
