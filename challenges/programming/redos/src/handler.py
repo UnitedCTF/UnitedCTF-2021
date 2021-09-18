@@ -109,10 +109,12 @@ class Handler (socketserver.StreamRequestHandler):
 
 	def run_challenge(self, filename: str, max_chars: int, target_steps: int):
 		msg = self.rfile.readline().strip(b'\n\r')
+		print(msg)
 		if len(msg) > max_chars: raise InvalidInputError(f'Message length should not exceed {max_chars}.')
 
 		s = subprocess.run(['python3', filename], capture_output=True, input=msg)
 		stdout = s.stdout.decode()
+		print(stdout)
 
 		if (stderr := s.stderr.decode()):
 			error_message = stderr.split('\n')[-2]
