@@ -82,11 +82,20 @@ services:
     build:
       context: "./programming/redos"
     restart: "unless-stopped"
-    cpus: 0.25
-    mem_limit: 512m
+    cpus: 2
+    mem_limit: 1024m
     command: python3 ./launch_server.py
     ports:
       - 31337:31337
+
+  programming_timingattack:
+    build:
+      context: "./programming/timingattack"
+    restart: "unless-stopped"
+    cpus: 0.25
+    mem_limit: 512m
+    ports:
+      - 10010:80
 
   # PWN
   pwn_simple_notes:
@@ -165,8 +174,8 @@ services:
     build:
       context: "./web/hackertools"
     restart: "unless-stopped"
-    cpus: 0.25
-    mem_limit: 512m
+    cpus: 2
+    mem_limit: 1024m
     environment:
       PORT: 1337
       ENVIRONMENT: "production"
@@ -278,15 +287,6 @@ services:
       - HTTP_PORT=5000
     ports:
       - 5000-5100:5000-5100
-
-  web_timingattack:
-    build:
-      context: "./web/timingattack"
-    restart: "unless-stopped"
-    cpus: 0.25
-    mem_limit: 512m
-    ports:
-      - 10010:80
 
   web_upload1:
     build:
