@@ -26,9 +26,12 @@ const ftpServer = new FtpSrv({
 });
 
 ftpServer.on("login", async (data, resolve, reject) => {
+  const username = data.username.trim();
+  const password = data.password.trim();
+
   if (
-    !/^[A-z0-9]{8,32}$/.test(data.username) ||
-    !/^[A-z0-9]{8,32}$/.test(data.password)
+    !/^[A-z0-9]{8,32}$/.test(username) ||
+    !/^[A-z0-9]{8,32}$/.test(password)
   ) {
     reject(
       new Error(
@@ -38,7 +41,9 @@ ftpServer.on("login", async (data, resolve, reject) => {
   } else {
     try {
       const hash = md5(
-        `${data.username}_${data.password}_${process.env.SECRET || "store'n'go"}`
+        `${username}_${password}_${
+          process.env.SECRET || "store'n'go"
+        }`
       );
       const is_admin = await redis_exists(rclient, hash + "_admin");
       const userpath = path.join(
