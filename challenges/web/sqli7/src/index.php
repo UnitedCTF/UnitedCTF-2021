@@ -45,7 +45,7 @@
 				}
 
 				$db = new SQLite3($filename, SQLITE3_OPEN_READONLY);
-				$reqstr = 'SELECT * FROM users WHERE username="' . $_POST['u'] . '" AND password="' . $_POST['p'] . '"';
+				$reqstr = "SELECT * FROM users WHERE username='" . $_POST['u'] . "' AND password='" . $_POST['p'] . "'";
 				$results = @$db->query($reqstr);
 
 				if (gettype($results) != "object" || !$results) {
