@@ -27,10 +27,10 @@ export class Solve extends Solution {
             shc: shc.toString()
         }))).data;
 
-        let regex = /CTF{.*?}/.exec(data);
+        let regex = /(FLAG-.*?)</.exec(data);
 
         if(regex) {
-            console.log(regex[0]);
+            console.log(regex[1]);
         } else {
             console.log("FAIL:", data);
         }

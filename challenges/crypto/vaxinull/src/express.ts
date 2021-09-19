@@ -116,7 +116,13 @@ function validateSHC(shc?: string): SHC {
     if(!parseInt(shc.substring(5))) throw "Non-numeric SHC body.";
     if(shc.length % 2 == 0) throw "Incorrect SHC size.";
 
-    let shcObj = SHC.fromString(shc);
+    let shcObj: SHC;
+
+    try {
+        shcObj = SHC.fromString(shc);
+    } catch(err) {
+        throw `Something went wrong when decoding your SHC: ${err}.`;
+    }
 
     if(!shcObj.header.alg) throw "No `alg` field in header.";
     if(!shcObj.header.kid) throw "No `kid` field in header.";

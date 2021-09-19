@@ -36,10 +36,6 @@ export class Gzip {
     }
 
     public static decompress(data: string): string {
-        let b64less = Buffer.from(data, "base64");
-
-        if(b64less.toString().indexOf("{") >= 0) throw "SHC body is not compressed.";
-
-        return zlib.inflateRawSync(b64less).toString("utf8");
+        return zlib.inflateRawSync(Buffer.from(data, "base64")).toString("utf8");
     }
 }
