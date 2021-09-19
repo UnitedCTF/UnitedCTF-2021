@@ -41,7 +41,7 @@ const SHC_CHALLENGES: ISHCChallenges = {
     },
     '3': {
         title: "JWKS",
-        prompt: "We offer multiple JWK keys in <a href=\"/samples/3/.well-known/jwks.json\">/.well-known/jwks.json</a>. These keys are <b>always only public</b> for safety. You can request a custom key at <a href=\"mailto:todo@todo.todo\">todo@todo.todo</a>. You can try your generated SHCs in the input box below."
+        prompt: "We offer a JWK key in <a href=\"/samples/3/.well-known/jwks.json\">/.well-known/jwks.json</a>. All JWKS we provide are <b>always only public</b> for safety. You can request a custom key at <a href=\"mailto:todo@todo.todo\">todo@todo.todo</a>. You can try your generated SHCs in the input box below."
     },
     '4': {
         title: "ISS",
