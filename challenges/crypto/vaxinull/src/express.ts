@@ -179,6 +179,7 @@ app.post('/samples/4/', async (req, res) => {
         let jwks = (await axios.get(shc.body.iss + '/.well-known/jwks.json')).data;
 
         if(jwks instanceof String) throw "Invalid response type.";
+        if(!jwks.keys) throw "Invalid JWKS format.";
 
         let jwkRaw = jwks.keys.find((key: any) => key.kid === shc.header.kid);
 
