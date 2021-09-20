@@ -9,9 +9,9 @@ Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdo
 I found this game on the Internet and it does weird things sometimes. I don't know... it's strange. Seems like there are no game objectives, but I can't stop spending hours going through the maze. I've spent hours playing and I'm running late with my school assignments.
 
 Control keys:
-`Arrows`: Moving and turning
-`Page up` and `Page down`: Look up and down
-`Escape`: Exit the game
+* `Arrows`: Moving and turning
+* `Page up` and `Page down`: Look up and down
+* `Escape`: Exit the game
 
 --------------
 
