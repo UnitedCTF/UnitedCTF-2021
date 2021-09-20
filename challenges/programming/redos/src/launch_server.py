@@ -17,6 +17,9 @@ class CustomTCPServer(socketserver.ThreadingTCPServer):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
+	def handle_error(self, request, address):
+		pass
+
 port = 31337
 print(f'Starting server on internal port: {port}')
 address = ('0.0.0.0', port)

@@ -17,11 +17,8 @@ class Handler (socketserver.StreamRequestHandler):
 		self.wfile.write(message.encode() + b'\r\n')
 
 	def handle(self):
-		try:
-			self.send_welcome_message()
-			self.serve()
-		except Exception as e:
-			print(e)
+		self.send_welcome_message()
+		self.serve()
 
 	def send_welcome_message(self):
 		m = (
