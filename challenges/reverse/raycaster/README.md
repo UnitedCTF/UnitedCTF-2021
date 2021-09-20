@@ -6,7 +6,7 @@ Ce challenge contient 5 flags.
 
 Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdoomer)
 
-I found this game on the Internet and it does weird things sometimes. I don't know... it's strange. Seems like there are no game objectives, but I can't stop spending hours going through the maze. I've spent hours playing and I'm late with my school assignments.
+I found this game on the Internet and it does weird things sometimes. I don't know... it's strange. Seems like there are no game objectives, but I can't stop spending hours going through the maze. I've spent hours playing and I'm running late with my school assignments.
 
 --------------
 
