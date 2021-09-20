@@ -1,8 +1,4 @@
 <?php
-
-// touch -t 201610131030
-// touch -t 244308261532 users.db
-
 	// Site web vraiment mauvais fait par un contracteur
 	// L'auth fait juste ajouter un paramètre GET dans l'URL
 
