@@ -16,6 +16,16 @@ const rclient = redis.createClient({
   port: 6379,
 });
 
+const cleanPath = (path: string): string => {
+  let lastpath: string = "";
+  let currpath: string = path;
+  while (currpath !== lastpath) {
+    lastpath = currpath;
+    currpath = currpath.replace(/\.\./g, ".");
+  }
+  return currpath;
+};
+
 app.use(
   session({
     store: new rstore({ client: rclient, db: 1 }),
@@ -50,10 +60,7 @@ app.post(
           `${req.body.username}_${req.body.password}_${process.env.SECRET}`
         );
 
-        const is_admin = await redis_exists(
-          rclient,
-          session.hash + "_admin"
-        );
+        const is_admin = await redis_exists(rclient, session.hash + "_admin");
         if (is_admin) session.hash = "admin";
 
         const userpath = path.join(__dirname, "userdata", session.hash);
@@ -103,7 +110,7 @@ app.post(
       } else {
         const userpath = path.join(__dirname, "userdata", session.hash);
         await fs.promises.writeFile(
-          path.join(userpath, req.file.originalname.replace(/\.\./g, ".")),
+          path.join(userpath, cleanPath(req.file.originalname)),
           req.file.buffer
         );
 
@@ -146,7 +153,7 @@ app.get(
       } else {
         const userpath = path.join(__dirname, "userdata", session.hash);
         res.sendFile(
-          path.join(userpath, req.params.filename.replace(/\.\./g, "."))
+          path.join(userpath, cleanPath(req.params.filename))
         );
       }
     } catch (e) {
@@ -169,7 +176,7 @@ app.delete(
       } else {
         const userpath = path.join(__dirname, "userdata", session.hash);
         await fs.promises.unlink(
-          path.join(userpath, req.params.filename.replace(/\.\./g, "."))
+          path.join(userpath, cleanPath(req.params.filename))
         );
         res.status(204).send();
       }
@@ -192,10 +199,7 @@ app.get(
         res.status(403).send("please login");
       } else {
         res.json({
-          [session.hash]: await redis_exists(
-            rclient,
-            session.hash + "_admin"
-          ),
+          [session.hash]: await redis_exists(rclient, session.hash + "_admin"),
         });
       }
     } catch (e) {
