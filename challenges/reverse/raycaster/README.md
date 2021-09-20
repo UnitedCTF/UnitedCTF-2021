@@ -12,7 +12,7 @@ I found this game on the Internet and it does weird things sometimes. I don't kn
 
 Challenge 1 (first encounter): There's a command line parameter that's parsed right at the top of the `main_main` function (Go's `main()` function if it were Java or C code). 
 
-You should use IDA Free 7.6, which has a cloud decompiler. It does a mostly good job at decompiling Go binaries. For sure, you could also try other tools if it helps you. I'm thinking about GDB (GNU debugger), which has great plugins like Pwndbg, GEF and Peda). IDA also has its own debugger too. The nice thing with IDA is that you can edit the assembly code to change the program's behavior and save it to a new binary.
+You should use IDA Free 7.6, which has a cloud decompiler. It does a mostly good job at decompiling Go binaries. For sure, you could also try other tools if it helps you. I'm thinking about GDB (GNU debugger), which has great plugins like Pwndbg, GEF and Peda). IDA also has its own debugger too. The nice thing with IDA is that you can edit the assembly code to change the program's behavior and save it to a new binary via the "patch" functionality.
 
 You need Linux to run this challenge. This challenge was tested on Ubuntu 20.04.3 LTS. You must install SDL2 (`apt install libsdl2-2.0-0`). Let the challenge designer know if you have trouble running it. If you need help using IDA, there are plenty of tutorials online on websites such as Youtube.
 
