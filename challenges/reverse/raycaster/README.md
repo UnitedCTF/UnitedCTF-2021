@@ -8,6 +8,11 @@ Author: [Alexandre-Xavier Labonté-Lamoureux (AXDOOMER)](https://github.com/axdo
 
 I found this game on the Internet and it does weird things sometimes. I don't know... it's strange. Seems like there are no game objectives, but I can't stop spending hours going through the maze. I've spent hours playing and I'm running late with my school assignments.
 
+Control keys:
+`Arrows`: Moving and turning
+`Page up` and `Page down`: Look up and down
+`Escape`: Exit the game
+
 --------------
 
 Challenge 1 (first encounter): There's a command line parameter that's parsed right at the top of the `main_main` function (Go's `main()` function if it were Java or C code). 
@@ -69,9 +74,9 @@ En fouillant dans le code, on trouve une fonction `main_updateSpecials` qui effe
 
 Challenge 5:
 
-Il y a une salle innassessible sur la carte du jeu qu'on voit en haut à gauche lorsqu'on joue. Il faut aller dedans. La fonction qui vérifie si on est à l'intérieur s'appelle `main_updateTics`. Dedans, on peut voir la variable `main__stmp_5` qui contient `D4DACCC2E0EECAE856567CEEE8E0E0D8` suivi de `F8C6FC6CCAAACE56E6CAEC56D2D6CE54`. Si on concatène les deux ensemble pour obtenir `F8C6FC6CCAAACE56E6CAEC56D2D6CE54D4DACCC2E0EECAE856567CEEE8E0E0D8`, il faut ensuite rotate les bits vers la droite par 1 pour obtenir l'inverse de l'opération `v23[i] = __ROL8__((unsigned __int8)v21[i + 7], 63);` vue dans le code. Ensuite, le caractère `B` (66) est ajouté. On donc `lpptw>++tewpafmj*gki+ves+gUe6~c|B`. Juste après, on XOR par le nombre 4 pour obtenir une string renversée. Il s'agit de l'URL d'où est téléchargé le flag `flag-haveYouSeenTheMovie?` pour être affiché. 
+Il y a une salle innassessible sur la carte du jeu qu'on voit en haut à gauche lorsqu'on joue. Il faut aller dedans. La fonction qui vérifie si on est à l'intérieur s'appelle `main_updateTics`. Dedans, on peut voir la variable `main__stmp_5` qui contient `D4DACCC2E0EECAE856567CEEE8E0E0D8` suivi de `F8C6FC6CCAAACE56E6CAEC56D2D6CE54`. Si on concatène les deux ensemble pour obtenir `F8C6FC6CCAAACE56E6CAEC56D2D6CE54D4DACCC2E0EECAE856567CEEE8E0E0D8`, il faut ensuite rotate les bits vers la droite par 1 pour obtenir l'inverse de l'opération `v23[i] = __ROL8__((unsigned __int8)v21[i + 7], 63);` vue dans le code. Ensuite, le caractère `B` (66) est ajouté. On a donc `lpptw>++tewpafmj*gki+ves+gUe6~c|B`. Juste après, on XOR par le nombre 4 pour obtenir une string renversée. Il s'agit de l'URL d'où est téléchargé le flag `flag-haveYouSeenTheMovie?` pour être affiché. 
 
-Si on voulait le faire sans reverse la fonction `main_updateTics`, il faudrait modifier les quatre `if` qui commence par `if ( !main_worldmap` pour que le code sous leur scope s'exécute toujours. Dans le code assembleur, on peut les voir sous la forme suivante: 
+Si on voulait le faire sans reverse la fonction `main_updateTics`, il faudrait modifier les quatre `if` qui commencent par `if ( !main_worldmap` pour que le code sous leur scope s'exécute toujours. Dans le code assembleur, on peut les voir sous la forme suivante: 
 
 ```
 .text:00000000006850D5 84 DB                                   test    bl, bl
