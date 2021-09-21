@@ -137,7 +137,7 @@ class Board {
   public shoot(x: number, y: number): ShootStatus {
     if (this._status !== BoardStatus.GAME_IN_PROGRESS)
       return ShootStatus.GAME_ENDED;
-    else if (x < 0 || x > this._width - 1 || y < 0 || y > this._height)
+    else if (x < 0 || x >= this._width || y < 0 || y >= this._height)
       return ShootStatus.OUT_OF_BOUNDS;
     switch (this._tiles[x][y]) {
       case Tile.EMPTY:
