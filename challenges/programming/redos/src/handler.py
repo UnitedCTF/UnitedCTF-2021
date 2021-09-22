@@ -112,7 +112,16 @@ class Handler (socketserver.StreamRequestHandler):
 		print(msg)
 		if len(msg) > max_chars: raise InvalidInputError(f'Message length should not exceed {max_chars}.')
 
-		s = subprocess.run(['python3', filename], capture_output=True, input=msg)
+		try:
+			s = subprocess.run(['python3', filename], capture_output=True, input=msg, timeout = 15)
+		except TimeoutExpired:
+			m = (
+				'Great, you broke the challenge.',
+				f"Anyway, here's your flag: {flags[filename]}"
+			)
+			self.send_message(m)
+			self.serve()
+
 		stdout = s.stdout.decode()
 		print(stdout)
 
