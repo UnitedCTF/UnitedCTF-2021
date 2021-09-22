@@ -3,6 +3,8 @@ import json
 import subprocess
 import re
 
+from subprocess import TimeoutExpired
+
 from exceptions import InvalidInputError
 from secrets import flags
 
@@ -120,7 +122,7 @@ class Handler (socketserver.StreamRequestHandler):
 				f"Anyway, here's your flag: {flags[filename]}"
 			)
 			self.send_message(m)
-			self.serve()
+			return self.serve()
 
 		stdout = s.stdout.decode()
 		print(stdout)
@@ -148,5 +150,4 @@ class Handler (socketserver.StreamRequestHandler):
 			)
 
 		self.send_message(m)
-		self.serve()
-
+		return self.serve()
