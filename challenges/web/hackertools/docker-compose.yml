@@ -12,3 +12,8 @@ services:
       context: .
       dockerfile: Dockerfile
     entrypoint: ["npm", "start"]
+    restart: always
+    healthcheck:
+      test: curl -m 5 -f http://localhost:1337/healthcheck || kill 1
+      interval: 30s
+      timeout: 3s

@@ -154,6 +154,10 @@ const TOOLS: { [key: string ]: ITool } = {
     },
 }
 
+app.get(`/healthcheck`, (req, res) => {
+    res.send("OK");
+});
+
 app.get(`/app/tools`, (req, res) => {
     res.render('tools', { tools: Object.entries(TOOLS).sort(([k1, v1], [k2, v2]) => k1.localeCompare(k2)).map(([k, v]) => ({ id: k, ...v })) });
 });
