@@ -10,3 +10,5 @@ COPY --chown=root:root ./src /var/www/html/
 # Clear logs every 5 mins
 HEALTHCHECK --interval=300s --start-period=5s --retries=3 \
   CMD [ "cp", "/dev/null", "/var/log/apache2/access.log" ]
+
+USER www-data
