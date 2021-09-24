@@ -127,7 +127,7 @@ Mark</td></tr></table></center>";
 				echo "
 		<form action='index.php' method='post'>
 			<div class='imgcontainer'>
-				<img src='logo.jpg' alt='Avatar' class='avatar' height='200px'> <!-- write 'alpha version' in red? Maybe we should make this clear.-->
+				<img src='logo.jpg' alt='Centre d’hébergement de soins de dure longueur' class='avatar' height='200px'> <!-- write 'alpha version' in red? Maybe we should make this clear.-->
 			</div>
 
 			<div class='container'>
