@@ -129,6 +129,8 @@ const PORT = Number(process.env.PORT || 5000);
                   const status = board.getStatus();
                   if (status !== BoardStatus.GAME_IN_PROGRESS) {
                     if (status === BoardStatus.WON_THE_GAME) {
+                      wins++;
+
                       if (wins === 1) {
                         console.log(name, "got the first flag :)");
                         socket.write(
