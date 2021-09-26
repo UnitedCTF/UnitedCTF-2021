@@ -65,7 +65,6 @@ const PORT = Number(process.env.PORT || 5000);
                   socket.write(
                     "\n\nTimeout! You're out of time, better 'luck' next time ;)\n\n"
                   );
-                  socket.end();
                   socket.destroy();
                 }, TIMEOUT);
               }
@@ -144,7 +143,6 @@ const PORT = Number(process.env.PORT || 5000);
                             process.env.FLAG_5 +
                             "\n\n"
                         );
-                        socket.end();
                         socket.destroy();
                         return;
                       } else {
@@ -159,14 +157,12 @@ const PORT = Number(process.env.PORT || 5000);
                       socket.write(
                         "You lost this board, better 'luck' next time ;)\n\n"
                       );
-                      socket.end();
                       socket.destroy();
                       return;
                     }
                   }
                 }
-              } else if (str === "exit") {
-                socket.end();
+              } else if (str === "exit" || str.startsWith("healthcheck")) {
                 socket.destroy();
                 return;
               } else {

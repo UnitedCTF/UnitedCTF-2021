@@ -23,6 +23,9 @@ COPY --from=build /app/out /app
 
 RUN npm prune
 
+HEALTHCHECK --interval=60s --timeout=10s --start-period=10s --retries=3 \
+  CMD [ "npm", "run", "healthcheck:docker" ]
+
 EXPOSE 5000
 USER node
 CMD [ "npm", "run", "start:docker" ]
