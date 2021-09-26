@@ -31,7 +31,7 @@ class FakeBoard {
       length,
     }));
 
-    // this.init();
+    this.init();
   }
 
   public init() {
@@ -206,10 +206,11 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   let data = "";
   const socket = net
     .connect({
-      host: "challenges.unitedctf.ca",
-      port: 12345 //Number(process.env.PORT || 5000),
+      host: "localhost",
+      port: Number(process.env.PORT || 5000),
     })
-    .on("data", (d) => (data += d.toString()));
+    .on("data", (d) => (data += d.toString()))
+    .once("error", () => process.exit(0));
 
   await aw(socket.once.bind(socket, "connect"));
   const now = Date.now();
@@ -217,28 +218,23 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   // flush headers
   await sleep(1000);
   data = "";
-  console.log("ye?")
 
   const boards = [];
-  const range = 1000;
+  const range = 5000;
   for (let i = -range; i < range; ++i)
     boards.push(new FakeBoard(new Random(now + i, now + i, now + i)));
-    console.log("ye???")
-    for (let board of boards)
-    board.init();
-    console.log("ye???")
 
   const map = new HeatMap(boards);
   while (true) {
     const [x, y] = map.nextCoords();
 
     await aw(socket.write.bind(socket, `shoot ${x} ${y}`));
-    await sleep(500);
-    console.log(data.substr(0, data.length - 3));
+    await sleep(250);
+    console.log(data.substr(0, data.length - 2).trim());
 
     if (data.indexOf("won") !== -1 || data.indexOf("flag") !== -1) {
       data = "";
-      map.reinit();   
+      map.reinit();
       continue;
     }
 
