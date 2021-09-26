@@ -81,12 +81,17 @@ class Board {
     }
 
     for (
-      let i = 0, ship = this._default_ships[0];
+      let i = 0, z = 0, ship = this._default_ships[0];
       i < this._default_ships.length;
       ship = this._default_ships[++i]
     ) {
       this._shots_to_hit += ship.length;
       while (true) {
+        if (z > 25) {
+          ship.orientation = this._rng.pick(["N", "E", "S", "W"]);
+          z = 0;
+        }
+        z++;
         const x = ~~this._rng.nextRange(
           ship.orientation === "W" ? ship.length + 1 : 0,
           ship.orientation === "E" ? this._width - ship.length : this._width

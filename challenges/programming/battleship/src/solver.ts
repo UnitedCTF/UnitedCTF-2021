@@ -31,7 +31,7 @@ class FakeBoard {
       length,
     }));
 
-    this.init();
+    // this.init();
   }
 
   public init() {
@@ -41,11 +41,16 @@ class FakeBoard {
     );
 
     for (
-      let i = 0, ship = this._default_ships[0];
+      let i = 0, z = 0, ship = this._default_ships[0];
       i < this._default_ships.length;
       ship = this._default_ships[++i]
     ) {
       while (true) {
+        if (z > 25) {
+          ship.orientation = this._rng.pick(["N", "E", "S", "W"]);
+          z = 0;
+        }
+        z++;
         const x = ~~this._rng.nextRange(
           ship.orientation === "W" ? ship.length + 1 : 0,
           ship.orientation === "E" ? this._width - ship.length : this._width
@@ -201,8 +206,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   let data = "";
   const socket = net
     .connect({
-      host: "127.0.0.1",
-      port: Number(process.env.PORT || 5000),
+      host: "challenges.unitedctf.ca",
+      port: 12345 //Number(process.env.PORT || 5000),
     })
     .on("data", (d) => (data += d.toString()));
 
@@ -210,20 +215,25 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const now = Date.now();
 
   // flush headers
-  await sleep(100);
+  await sleep(1000);
   data = "";
+  console.log("ye?")
 
   const boards = [];
   const range = 1000;
   for (let i = -range; i < range; ++i)
     boards.push(new FakeBoard(new Random(now + i, now + i, now + i)));
+    console.log("ye???")
+    for (let board of boards)
+    board.init();
+    console.log("ye???")
 
   const map = new HeatMap(boards);
   while (true) {
     const [x, y] = map.nextCoords();
 
     await aw(socket.write.bind(socket, `shoot ${x} ${y}`));
-    await sleep(200);
+    await sleep(500);
     console.log(data.substr(0, data.length - 3));
 
     if (data.indexOf("won") !== -1 || data.indexOf("flag") !== -1) {
