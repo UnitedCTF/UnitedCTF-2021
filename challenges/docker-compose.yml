@@ -194,7 +194,7 @@ services:
 
   web_sqli1:
     build:
-      context: "./web/sqli1"
+      context: "./sqli/sqli1"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -203,7 +203,7 @@ services:
 
   web_sqli2:
     build:
-      context: "./web/sqli2"
+      context: "./sqli/sqli2"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -212,7 +212,7 @@ services:
 
   web_sqli3:
     build:
-      context: "./web/sqli3"
+      context: "./sqli/sqli3"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -221,7 +221,7 @@ services:
 
   web_sqli4:
     build:
-      context: "./web/sqli4"
+      context: "./sqli/sqli4"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -230,7 +230,7 @@ services:
 
   web_sqli5:
     build:
-      context: "./web/sqli5"
+      context: "./sqli/sqli5"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -239,7 +239,7 @@ services:
 
   web_sqli6:
     build:
-      context: "./web/sqli6"
+      context: "./sqli/sqli6"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -248,7 +248,7 @@ services:
 
   web_sqli7:
     build:
-      context: "./web/sqli7"
+      context: "./sqli/sqli7"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -257,7 +257,7 @@ services:
 
   web_sqli8:
     build:
-      context: "./web/sqli8"
+      context: "./sqli/sqli8"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
@@ -266,7 +266,7 @@ services:
 
   web_sqli9:
     build:
-      context: "./web/sqli9"
+      context: "./sqli/sqli9"
     restart: "unless-stopped"
     cpus: 0.25
     mem_limit: 512m
