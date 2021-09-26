@@ -1,9 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 
 import { decrypt, encrypt } from "./crypto";
-
-import dotenv from "dotenv";
-dotenv.config();
 
 const app = express();
 
