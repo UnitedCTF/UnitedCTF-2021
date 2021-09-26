@@ -24,11 +24,15 @@ Requirements:
 
 ## 1- Image abscente
 
+### LibreOffice document 1 (007)
+
 Un document ODT n'est qu'une archive ZIP. En changeant l'extension, on peut l'ouvrir avec un archiveur de fichiers. En explorant le contenu du fichier "Pictures", on peut trouver une image qui n'apparaît pas dans le document. Le flag est écrit sur l'image en texte rouge. 
 
 `flag-f46db7d4246abfa4b3d004204d7447daabe55233`
 
 ## 2- Vignette
+
+### LibreOffice document 2 (LSB)
 
 Quand on explore l'archive ZIP, on peut voir que tous les fichiers ont la même date, sauf la vignette (fichier "thumbnail") qui a été créé à exactement quatre heures de différence. La vignette du document est aussi visible si le système d'exploitation supporte de l'afficher comme icône du fichier. On peut voir des pixels de couleur turquoise (cyan). C'est en fait un message encodé en LSB. En utilisant un outil comme https://stegonline.georgeom.net, on peut décoder le contenu de l'image (cet outil particulié requiert de sélectionner le bit 7 du canal de couleur 'R' avec les paramètres par défaut). 
 
@@ -38,11 +42,15 @@ On obtiendra le texte ASCII suivant: `flag-b1cc6a6784402db22365073c1e969d837e8fe
 
 ## 3- Caractères blancs
 
+### LibreOffice document 3 (invisible characters)
+
 Certains caractères contenus dans le document sont blancs (donc invisibles sur fond blanc). On peut s'en appercevoir en changeant le "background color" dans le document afin de créer un contraste. Le script ci-dessous résout le défi automatiquement en cherchant ces caractères. 
 
 `flag-97d4244f362712`
 
 ## 4- Caractères ayant une police différente
+
+### LibreOffice document 4 (typographie)
 
 Certains caractères utilisent une police différente. La police la plus utilisée dans le document est Arial, mais il y a aussi des caractères qui utilisent la police Open Sans et Verdana. Les caractères utilisant Verdana sont cachés parmis le texte écrit en Arial. Les polices sont très semblables, donc il est difficile de le remarquer si on n'est pas attentif aux détails. 
 
