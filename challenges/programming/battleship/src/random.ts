@@ -3,10 +3,10 @@ export class Random {
   private _s2: number;
   private _s3: number;
 
-  constructor() {
-    this._s1 = Date.now();
-    this._s2 = Date.now();
-    this._s3 = Date.now();
+  constructor(s1?: number, s2?: number, s3?: number) {
+    this._s1 = s1 || Date.now();
+    this._s2 = s2 || Date.now();
+    this._s3 = s3 || Date.now();
   }
 
   public next(): number {

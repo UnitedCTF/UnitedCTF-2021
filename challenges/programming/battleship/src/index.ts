@@ -138,6 +138,7 @@ const PORT = Number(process.env.PORT || 5000);
                             process.env.FLAG_1 +
                             "\nCan you now beat this game 5 times in a row?\n"
                         );
+                        board.init();
                       } else if (wins === 5) {
                         console.log(name, "got the second flag :)");
                         socket.write(
